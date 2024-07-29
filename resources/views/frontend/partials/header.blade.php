@@ -22,21 +22,34 @@
             </form>
           </div>
         </div>
-
-        <div
-          class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
-          <div class="support-box text-end d-none d-xl-block">
-            <span class="fs-6 secondary-font text-muted">Phone</span>
-            <h6 class="mb-0">01990262016</h6>
-          </div>
-          <div class="support-box text-end d-none d-xl-block">
-            <span class="fs-6 secondary-font text-muted">Email</span>
-            <h6 class="mb-0">sumiyanil18@gmail.com</h6>
-          </div>
-
-
+        @guest('customerGuard')
+        <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
+        <ul style="list-style-type: none;"> 
+        <li>
+           <!-- anchor trigger modal for registration-->
+           <a href="#"   data-toggle="modal" data-target="#regModal">
+               Registration
+           </a>
+         </li>
+         <li>
+          <a href="#" data-toggle="modal" data-target="#loginModal">Login</a>
+         </li>
+        </ul>
 
         </div>
+        @endguest
+
+        @auth('customerGuard')
+        <li>
+          <a type="" class="">
+            {{auth('customerGuard')->user()->name}}
+          </a>
+        </li>
+        <li>
+          <a href="{{route('frontend.logout')}}">Logout</a>
+        </li>
+
+        @endauth
       </div>
     </div>
 
@@ -193,3 +206,98 @@
 
     </div>
   </header>
+  <!-- Modal -->
+<div class="modal fade" id="regModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Customer Register</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+      <form action="{{route('frontend.register')}}"  method="post">
+       
+      @csrf
+        <div class="modal-body">
+          <div>
+            <label for="">Enter your name:</label>
+            <input required type="text" name="customer_name" placeholder="Enter your name" class="form-control">
+          </div>
+
+          <div>
+            <label for="">Enter your email:</label>
+            <input required type="email" name="email" placeholder="Enter your email" class="form-control">
+          </div>
+
+          <div>
+            <label for="">Enter your password:</label>
+            <input required type="password" name="password" placeholder="Enter your password" class="form-control">
+          </div>
+
+
+          <div>
+            <label for="">Retype your password:</label>
+            <input required type="password" name="password_confirmation" placeholder="Retype your password" class="form-control">
+          </div>
+
+          <div>
+            <label for="">Enter your Mobile Number:</label>
+            <input required type="text" name="mobile_number" placeholder="Enter your Mobile number" class="form-control">
+          </div>
+ 
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Register now</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+ <!--login Modal -->
+ <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Customer Register</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+      <form action="{{route('frontend.login')}}"  method="post">
+       
+      @csrf
+        <div class="modal-body">
+         
+
+          <div>
+            <label for="">Enter your email:</label>
+            <input required type="email" name="email" placeholder="Enter your email" class="form-control">
+          </div>
+
+          <div>
+            <label for="">Enter your password:</label>
+            <input required type="password" name="password" placeholder="Enter your password" class="form-control">
+          </div>
+
+
+          
+ 
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">login</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+

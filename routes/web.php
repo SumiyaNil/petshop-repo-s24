@@ -10,6 +10,7 @@ use App\Http\Controllers\FosterController;
 use App\Http\Controllers\Frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\Frontend\ProductController as FrontendProductController;
 use App\Http\Controllers\Frontend\AccessoriesController as FrontendAccessoriesController;
+use App\Http\Controllers\Frontend\CustomerController as FrontendCustomerController;
 use App\Http\Controllers\MasterController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
@@ -26,6 +27,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[FrontendHomeController::class, 'home'])->name('frontend.home');
 Route::get('/product',[FrontendProductController::class,'allproduct'])->name('frontend.product');
 Route::get('/allaccessories',[FrontendAccessoriesController::class,'accessories'])->name('frontend.accessories');
+
+Route::post('/register',[FrontendCustomerController::class,'register'])->name('frontend.register');
+Route::post('/login',[FrontendCustomerController::class,'login'])->name('frontend.login');
+Route::get('/logout',[FrontendCustomerController::class,'logout'])->name('frontend.logout');
 
 //for admin panel
 
