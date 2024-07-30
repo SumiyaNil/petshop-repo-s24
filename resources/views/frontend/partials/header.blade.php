@@ -117,12 +117,11 @@
 
             <ul class="navbar-nav menu-list list-unstyled d-flex gap-md-3 mb-0">
               <li class="nav-item">
-                <a href="index.html" class="nav-link active">Home</a>
+                <a href="{{route('frontend.home')}}" class="nav-link active">Home</a>
               </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" role="button" id="pages" data-bs-toggle="dropdown"
-                  aria-expanded="false">Accessories</a>
-                <ul class="dropdown-menu" aria-labelledby="pages">
+              <li class="nav-item">
+                <a href="{{route('frontend.accessories')}}" class="nav-link" >Accessories</a>
+                <!-- <ul class="dropdown-menu" aria-labelledby="pages">
                   <li><a href="about.html" class="dropdown-item">About Us<span
                         class="badge bg-success text-dark ms-2">Services</span></a></li>
                   <li><a href="shop.html" class="dropdown-item">Shop<span
@@ -151,7 +150,7 @@
                         class="badge bg-success text-dark ms-2">PRO</span></a></li>
                   <li><a href="styles.html" class="dropdown-item">Styles<span
                         class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                </ul>
+                </ul> -->
               </li>
               <li class="nav-item">
                 <a href="shop.html" class="nav-link">Shop</a>
@@ -264,7 +263,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Customer Register</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Customer login</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

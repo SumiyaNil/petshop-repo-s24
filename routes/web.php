@@ -31,8 +31,7 @@ Route::get('/allaccessories',[FrontendAccessoriesController::class,'accessories'
 Route::post('/register',[FrontendCustomerController::class,'register'])->name('frontend.register');
 Route::post('/login',[FrontendCustomerController::class,'login'])->name('frontend.login');
 Route::get('/logout',[FrontendCustomerController::class,'logout'])->name('frontend.logout');
-
-//for admin panel
+Route::get('/accessories/show/{p_id}',[FrontendAccessoriesController::class,'show'])->name('show.accessories');
 
 
 Route::group(['prefix'=>'admin'],function(){

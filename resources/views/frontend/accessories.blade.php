@@ -9,10 +9,10 @@
 
     @foreach ($allaccessories as $acc )
         
-   
+     
       <div class="col-md-12 col-lg-4 mb-4 mb-lg-0">
 
-
+         <a href="{{route('show.accessories',$acc->id)}}">
         <div class="card text-black">
           <img src="{{url('/uploads/'.$acc->image)}}"
             class="card-img-top" alt="iPhone" width="50px" />
@@ -28,15 +28,18 @@
                 <span style="color: transparent;">0</span>
               </div>
             </div>
+             
+            
+          </div>
 
-            <div class="d-flex flex-row">
+        </div>
+        </a>
+        <div class="d-flex flex-row">
               <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary flex-fill me-1" data-mdb-ripple-color="dark">
                 Learn more
               </button>
               <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-danger flex-fill ms-1">Buy now</button>
             </div>
-          </div>
-        </div>
       </div>
 
       @endforeach
