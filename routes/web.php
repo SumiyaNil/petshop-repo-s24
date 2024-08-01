@@ -55,9 +55,12 @@ Route::group(['prefix'=>'admin'],function(){
        Route::get('/accessories',[AccessoriesController::class,'accessories'])->name('accessories.list');
        Route::get('accessories-form',[AccessoriesController::class,'form'])->name('accessories.form');
        Route::post('accessories-store',[AccessoriesController::class,'store'])->name('accessories.store');
-    
-
-
+       //accessories delete
+       Route::get('/accessories-delete/delete/{acc_id}',[AccessoriesController::class,'delete'])->name('accessories.delete');
+       Route::get('/accessories-view/view/{acc_id}',[AccessoriesController::class,'view_accessories'])->name('accessories.view');
+       Route::get('/accessories-edit/edit/{acc_id}',[AccessoriesController::class,'edit_accessories'])->name('accessories.edit');
+       Route::post('/accessories-update/update/{acc_id}}',[AccessoriesController::class,'update_accessories'])->name('accessories.update');
+       
        Route::get('/customer',[CustomerController::class,'customer'])->name('customer.list');
        Route::get('/customer-form',[CustomerController::class,'form'])->name('customer.form');
        Route::post('/customer-store',[CustomerController::class,'store'])->name('customer.store');

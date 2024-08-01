@@ -17,9 +17,9 @@
     </tr>
   </thead>
   <tbody>
-    @foreach($allaccessories as $acc)
+    @foreach($allaccessories as $key=>$acc)
     <tr>
-      <th scope="row">{{$acc->id}}</th>
+      <th scope="row">{{$key+1}}</th>
       <td>{{$acc->name}}</td>
       <td>{{$acc->description}}</td>
       <td>{{$acc->stock}}</td>
@@ -28,9 +28,9 @@
       <td>{{$acc->status}} active</td>
       <td>{{$acc->category->name}}</td>
       <td>
-        <a class="btn btn-success" href="">View</a>
-        <a class="btn btn-info" href="">Edit</a>
-        <a class="btn btn-danger" href="">Delete</a>
+        <a class="btn btn-success" href="{{route('accessories.view',$acc->id)}}">View</a>
+        <a class="btn btn-info" href="{{route('accessories.edit',$acc->id)}}">Edit</a>
+        <a class="btn btn-danger" href="{{route('accessories.delete',$acc->id)}}">Delete</a>
       </td>
     </tr>
     @endforeach

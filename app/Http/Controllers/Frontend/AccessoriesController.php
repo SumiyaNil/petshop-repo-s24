@@ -16,9 +16,11 @@ class AccessoriesController
     {
         
       $singleAccessories=Accessories::find($id);
-      $relatedAccessories=Accessories::where('$category_id',$singleAccessories->category_id)
+      $relatedAccessories=Accessories::where('category_id',$singleAccessories->category_id)
        ->where('id','!=',$singleAccessories->id)
-       ->limit(4)->get();
+       ->limit(3)
+       ->get();
+       
      // dd($singleAccessories);
       return view('frontend.page.single_accessories',compact('singleAccessories','relatedAccessories'));
     }

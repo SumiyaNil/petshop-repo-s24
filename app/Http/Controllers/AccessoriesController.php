@@ -66,5 +66,36 @@ class AccessoriesController
     
     return redirect()->route('accessories.list');
   }
+  public function delete($id)//can give any type of parameter name
+  {
+     $singleAccessories=Accessories::find($id)->delete();
+     notify()->success('Accessories Deleted Successfully');
+     return redirect()->back();
+  }
 
+  public function view_accessories($id)
+  {
+   $acc=Accessories::find($id);
+   return view('backend.page.viewaccessories',compact('acc'));
+
+  }
+  public function edit_accessories($id)
+  {
+    $acc=Accessories::find($id);
+    $allCategory=Category::all();
+    return view('backend.page.editaccessories',compact('acc','allCategory'));
+  }
+  public function update_accessories(Request $request,$id)
+  {
+    $acc=Accessories::find($id);
+    $acc->update([
+       'name' => $request->acc_title, 
+       'stock' =>$request->acc_stock,
+       'price' =>$request->acc_price
+    ]);
+    notify()->success('Accessories updated successfully');
+    return redirect()->route('accessories.list');
+
+  }
 }
+

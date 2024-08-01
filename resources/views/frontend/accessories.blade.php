@@ -36,7 +36,7 @@
         </a>
         <div class="d-flex flex-row">
               <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary flex-fill me-1" data-mdb-ripple-color="dark">
-                Learn more
+                Add to cart
               </button>
               <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-danger flex-fill ms-1">Buy now</button>
             </div>

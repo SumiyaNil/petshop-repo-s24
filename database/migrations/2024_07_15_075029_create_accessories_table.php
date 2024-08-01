@@ -19,7 +19,7 @@ return new class extends Migration
             $table->double('price');
             $table->string('image');
             $table->string('status')->default('active');
-            $table->string('category_id');
+            $table->integer('category_id');
             $table->timestamps();
         });
     }
