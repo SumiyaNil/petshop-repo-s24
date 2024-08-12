@@ -24,4 +24,9 @@ class AccessoriesController
      // dd($singleAccessories);
       return view('frontend.page.single_accessories',compact('singleAccessories','relatedAccessories'));
     }
+    public function search()
+    {
+      $allaccessories=Accessories::where('name','LIKE','%'.request()->search_key.'%')->get();
+      return view('frontend.page.search', compact('allaccessories'));
+    }
 }

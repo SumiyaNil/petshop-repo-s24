@@ -17,7 +17,7 @@ return new class extends Migration
             $table->double('number')->nullable();
             $table->string('password');
             $table->string('email')->unique();
-            $table->string('image')->nullable();
+           // $table->string('image')->nullable();
             $table->string('status')->default('active');
             $table->timestamps();
         });

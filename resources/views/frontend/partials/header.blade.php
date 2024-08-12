@@ -12,9 +12,8 @@
 
         <div class="col-sm-6 offset-sm-2 offset-md-0 col-lg-5 d-none d-lg-block">
           <div class="search-bar border rounded-2 px-3 border-dark-subtle">
-            <form id="search-form" class="text-center d-flex align-items-center" action="" method="">
-              <input type="text" class="form-control border-0 bg-transparent"
-                placeholder="Search for more than 10,000 products" />
+            <form id="search-form" class="text-center d-flex align-items-center" action="{{route('search')}}" method="">
+              <input type="text" name="search_key" class="form-control border-0 bg-transparent" placeholder="Search here" />
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                 <path fill="currentColor"
                   d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z" />
@@ -40,13 +39,17 @@
         @endguest
 
         @auth('customerGuard')
+        
+        <!-- <a href="" class="mx-3">
+          <img src="/uploads/.auth('customerGuard')->user()->image" alt="">
+        </a> -->
         <li>
-          <a type="" class="">
+          <a type="" class="mx-3" href="{{route('profile.page')}}">
             {{auth('customerGuard')->user()->name}}
           </a>
         </li>
         <li>
-          <a href="{{route('frontend.logout')}}">Logout</a>
+          <a href="{{route('frontend.logout')}}" class="mx-3">Logout</a>
         </li>
 
         @endauth
@@ -74,11 +77,11 @@
             </li>
 
             <li>
-              <a href="#" class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
+              <a href="{{route('view.cart')}}" class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
                 aria-controls="offcanvasCart">
                 <iconify-icon icon="mdi:cart" class="fs-4 position-relative"></iconify-icon>
                 <span class="position-absolute translate-middle badge rounded-circle bg-primary pt-2">
-                  03
+                  
                 </span>
               </a>
             </li>
@@ -153,13 +156,13 @@
                 </ul> -->
               </li>
               <li class="nav-item">
-                <a href="shop.html" class="nav-link">Shop</a>
+                <a href="shop.html" class="nav-link">Order</a>
               </li>
               <li class="nav-item">
-                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="" class="nav-link">Foster</a>
               </li>
               <li class="nav-item">
-                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="contact.html" class="nav-link">Payment</a>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">Others</a>
@@ -181,17 +184,52 @@
                     <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
                   </a>
                 </li>
-
+               <!-- cart -->
                 <li class="">
-                  <a href="#" class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
-                    aria-controls="offcanvasCart">
+                  <a href="{{route('view.cart')}}" >
+                    <!-- class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" -->
+                    <!-- aria-controls="offcanvasCart" -->
                     <iconify-icon icon="mdi:cart" class="fs-4 position-relative"></iconify-icon>
                     <span class="position-absolute translate-middle badge rounded-circle bg-primary pt-2">
-                      03
+                                   
                     </span>
                   </a>
                 </li>
               </ul>
+              <div class="cart-text">
+
+
+
+<br>
+
+<!-- @php 
+if(session()->has('basket')){
+    echo count(session()->get('basket'));
+}else{
+    echo 0;
+}
+@endphp -->
+
+<!-- @if (session()->has('basket'))
+
+{{ count(session()->get('basket')) }} 
+
+@else
+0
+@endif -->
+
+<!-- ternary operator -->
+
+<!-- (condition) ? if block : else block -->
+@if(session()->has('basket'))
+
+{{ count(session()->get('basket')) }} item(s) - {{ array_sum(array_column(session()->get('basket'),'subtotal')) }}
+
+@else
+
+0 item(s)
+
+@endif
 
             </div>
 
@@ -245,6 +283,12 @@
             <label for="">Enter your Mobile Number:</label>
             <input required type="text" name="mobile_number" placeholder="Enter your Mobile number" class="form-control">
           </div>
+        <!-- image -->
+          <!-- <div>
+            <label for="">Enter your image</label>
+            <input required type="file" name="customer_image" placeholder="Enter your customer image" class="form-control">
+          </div> -->
+ 
  
       </div>
       <div class="modal-footer">

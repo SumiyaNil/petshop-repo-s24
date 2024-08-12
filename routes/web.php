@@ -11,6 +11,7 @@ use App\Http\Controllers\Frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\Frontend\ProductController as FrontendProductController;
 use App\Http\Controllers\Frontend\AccessoriesController as FrontendAccessoriesController;
 use App\Http\Controllers\Frontend\CustomerController as FrontendCustomerController;
+use App\Http\Controllers\Frontend\ProfileController;
 use App\Http\Controllers\MasterController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
@@ -30,8 +31,25 @@ Route::get('/allaccessories',[FrontendAccessoriesController::class,'accessories'
 
 Route::post('/register',[FrontendCustomerController::class,'register'])->name('frontend.register');
 Route::post('/login',[FrontendCustomerController::class,'login'])->name('frontend.login');
-Route::get('/logout',[FrontendCustomerController::class,'logout'])->name('frontend.logout');
+
 Route::get('/accessories/show/{p_id}',[FrontendAccessoriesController::class,'show'])->name('show.accessories');
+//cart
+Route::get('/add-to-cart/{productID}',[OrderController::class,'addCart'])->name('add.cart');
+Route::get('/view-cart',[OrderController::class,'viewcart'])->name('view.cart');
+Route::get('/clear-cart',[OrderController::class, 'clearCart'])->name('cart.clear');
+Route::get('/cart/item/delete/{id}',[OrderController::class, 'cartItemDelete'])->name('cart.item.delete');
+Route::get('/search',[FrontendAccessoriesController::class,'search'])->name('search');
+//logout and checkout
+Route::group(['middleware'=>'customer_auth'],function(){
+   Route::get('/logout',[FrontendCustomerController::class,'logout'])->name('frontend.logout');
+   Route::get('checkout',[OrderController::class,'checkout'])->name('checkout');
+   Route::post('/placeorder',[OrderController::class,'placeOrder'])->name('place.order');
+   Route::get('/profile-page',[ProfileController::class,'profilePage'])->name("profile.page");
+   Route::get('/profile-order',[ProfileController::class,'profileOrder'])->name('profile.order');
+   Route::get('/view-Invoice/{order_id}',[OrderController::class,'viewInvoice'])->name('view.invoice');
+  
+});
+
 
 
 Route::group(['prefix'=>'admin'],function(){

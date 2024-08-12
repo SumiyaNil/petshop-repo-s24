@@ -12,11 +12,13 @@ class CustomerController
     public function register(Request $request)
     {
       //validation
+      // dd($request->all());
       $validation = Validator::make($request->all(),[
         'customer_name'=>'required',
         'email'=>'required|email',
         'password'=>'required|confirmed|min:4',
-        'mobile_number'=>'required|min:11|max:11'
+        'mobile_number'=>'required|min:11|max:11',
+        //'customer_image'=>'required|file|max:1024'
 
       ]);
       if($validation->fails())
@@ -24,12 +26,20 @@ class CustomerController
         notify()->error($validation->getMessageBag());
         return redirect()->back();
       }
+      //  $fileName=null;
+      // if($request->hasFile('customer_image'))
+      // {
+      //  $file=$request->file('customer_image');
+      //  $fileName=date('Ymdhis').'.'.$file->getClientOriginalExtension();
+      //  $file->storeAs('/',$fileName);
+      // }
       //Query
       Customer::create([
         'name'=>$request->customer_name,
         'email'=>$request->email,
         'password'=>bcrypt($request->password),
-        'number'=>$request->mobile_number
+        'number'=>$request->mobile_number,
+        //'image'=>$fileName
       ]);
       notify()->success('Customer Registration Successful.');
 
@@ -66,6 +76,10 @@ class CustomerController
     public function logout()
     {
       auth('customerGuard')->logout();
-      return redirect()->back();
+      session()->forget('basket');
+      notify()->success('logout successfully');
+      return redirect()->route('frontend.home');
     }
+
+   
 }
