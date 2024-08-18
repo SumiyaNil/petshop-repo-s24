@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\Location;
 use Illuminate\Http\Request;
 
 class HomeController
@@ -10,6 +11,8 @@ class HomeController
     {
         // dd("test");
         //return view('frontend.master');
-         return view('frontend.home');
+        
+        $location=Location::all();
+         return view('frontend.home',compact('location'));
     }
 }

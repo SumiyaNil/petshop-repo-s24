@@ -17,6 +17,11 @@
     <input name="customer_image" required type="file" class="form-control" id="c_image" placeholder="Enter customer contact number">
     
   </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Customer location</label>
+    <input name="location" required type="text" class="form-control" id="c_image" placeholder="Enter customer contact number">
+    
+  </div>
   
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>

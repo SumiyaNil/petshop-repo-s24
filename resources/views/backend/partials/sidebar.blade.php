@@ -55,10 +55,16 @@
                 Category
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="{{route('foster.list')}}">
+            <!-- <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="">
                 <svg class="bi"><use xlink:href="#puzzle"/></svg>
                 Foster-care
+              </a>
+            </li> -->
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="{{route('location.list')}}">
+                <svg class="bi"><use xlink:href="#puzzle"/></svg>
+                Location
               </a>
             </li>
 

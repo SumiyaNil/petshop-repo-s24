@@ -13,11 +13,15 @@
         <div class="col-sm-6 offset-sm-2 offset-md-0 col-lg-5 d-none d-lg-block">
           <div class="search-bar border rounded-2 px-3 border-dark-subtle">
             <form id="search-form" class="text-center d-flex align-items-center" action="{{route('search')}}" method="">
-              <input type="text" name="search_key" class="form-control border-0 bg-transparent" placeholder="Search here" />
+              <input type="text" value="{{request()->search_key}}" name="search_key" class="form-control border-0 bg-transparent" placeholder="Search here" />
+              
+              <button type="submit" class="btn">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                 <path fill="currentColor"
                   d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z" />
               </svg>
+            </button>
+
             </form>
           </div>
         </div>
@@ -109,14 +113,35 @@
           </div>
 
           <div class="offcanvas-body justify-content-between">
-            <select class="filter-categories border-0 mb-0 me-5">
-              <option>Shop by Category</option>
-              <option>Cat</option>
-              <option>Bird</option>
-              <option>Dog</option>
-              <option>Fish</option>
-              
-            </select>
+          
+            <div class="shop-category nav navbar-nav navbar-left">
+
+        <!-- Single button -->
+
+        <div class="btn-group">
+
+          <button type="button" class="btn btn-shop-category dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+            Shop By Category <span class="caret"></span>
+
+          </button>
+
+          <ul class="dropdown-menu">
+
+            @foreach ($categories as $cat)
+
+
+            <li><a href="">{{$cat->name}}</a></li>
+
+            @endforeach
+
+
+          </ul>
+
+        </div>
+
+      </div>
+
 
             <ul class="navbar-nav menu-list list-unstyled d-flex gap-md-3 mb-0">
               <li class="nav-item">
@@ -124,42 +149,14 @@
               </li>
               <li class="nav-item">
                 <a href="{{route('frontend.accessories')}}" class="nav-link" >Accessories</a>
-                <!-- <ul class="dropdown-menu" aria-labelledby="pages">
-                  <li><a href="about.html" class="dropdown-item">About Us<span
-                        class="badge bg-success text-dark ms-2">Services</span></a></li>
-                  <li><a href="shop.html" class="dropdown-item">Shop<span
-                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                  <li><a href="single-product.html" class="dropdown-item">Single Product<span
-                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                  <li><a href="cart.html" class="dropdown-item">Cart<span
-                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                  <li><a href="wishlist.html" class="dropdown-item">Wishlist<span
-                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                  <li><a href="checkout.html" class="dropdown-item">Checkout<span
-                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                  <li><a href="blog.html" class="dropdown-item">Blog<span
-                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                  <li><a href="single-post.html" class="dropdown-item">Single Post<span
-                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                  <li><a href="contact.html" class="dropdown-item">Contact<span
-                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                  <li><a href="faqs.html" class="dropdown-item">FAQs<span
-                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                  <li><a href="account.html" class="dropdown-item">Account<span
-                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                  <li><a href="thank-you.html" class="dropdown-item">Thankyou<span
-                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                  <li><a href="error.html" class="dropdown-item">Error 404<span
-                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                  <li><a href="styles.html" class="dropdown-item">Styles<span
-                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                </ul> -->
               </li>
               <li class="nav-item">
-                <a href="shop.html" class="nav-link">Order</a>
+                <a href="#" class="nav-link">Order</a>
               </li>
               <li class="nav-item">
-                <a href="" class="nav-link">Foster</a>
+                
+                <a href="{{route('frontend.foster')}}" class="nav-link">({{$foster->count()}}) New Foster Request</a>
+                    
               </li>
               <li class="nav-item">
                 <a href="contact.html" class="nav-link">Payment</a>
@@ -167,9 +164,7 @@
               <li class="nav-item">
                 <a href="#" class="nav-link">Others</a>
               </li>
-              <li class="nav-item">
-                <a href="https://templatesjungle.gumroad.com/l/waggy-pet-shop-ecommerce-html-website-template" class="nav-link fw-bold text-dark" target="_blank">GET PRO</a>
-              </li>
+              
             </ul>
 
             <div class="d-none d-lg-flex align-items-end">
@@ -180,7 +175,9 @@
                   </a>
                 </li>
                 <li>
-                  <a href="wishlist.html" class="mx-3">
+                  <!-- foster -->
+
+                  <a href="{{route('view.foster')}}" class="mx-3">
                     <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
                   </a>
                 </li>
@@ -283,6 +280,17 @@ if(session()->has('basket')){
             <label for="">Enter your Mobile Number:</label>
             <input required type="text" name="mobile_number" placeholder="Enter your Mobile number" class="form-control">
           </div>
+          <!-- drop down for location -->
+                <div class="form-group">
+          <label for="exampleFormControlSelect2">Location</label>
+          <select multiple class="form-control" name="location" id="exampleFormControlSelect2">
+            
+          @foreach($location as $local)
+          
+            <option value="{{$local->id}}">{{$local->location}}</option>
+          @endforeach
+          </select>
+        </div>
         <!-- image -->
           <!-- <div>
             <label for="">Enter your image</label>

@@ -1,7 +1,7 @@
 @extends('backend.master')
 @section('content')
 <h1>this is a category list</h1>
-<h2>Insert your category here</h2>
+
 
 
 <table class="table">

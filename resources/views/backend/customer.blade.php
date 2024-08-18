@@ -8,6 +8,7 @@
       <th scope="col">#</th>
       <th scope="col">Customer Name</th>
       <th scope="col">Number</th>
+      <th scope="col">location</th>
       <th scope="col">Image</th>
       <th scope="col">Status</th>
       <th scope="col">Action</th>
@@ -19,6 +20,7 @@
       <th scope="row">{{$cus->id}}</th>
       <td>{{$cus->name}}</td>
       <td>{{$cus->number}}</td>
+      <td>{{$cus->location}}</td>
       <td><img src="{{url('/uploads/'.$cus->image)}}" alt="NO IMAGE" width="60"></td>
       <td>{{$cus->status}}</td>
       <td>

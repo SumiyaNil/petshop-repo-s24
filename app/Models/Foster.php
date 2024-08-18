@@ -10,4 +10,8 @@ class Foster extends Model
     use HasFactory;
     protected $guarded = [];
     public $timestamps = false;
+    public function locationRel()
+    {
+        return $this->belongsTo(Location::class,'location');
+    }
 }

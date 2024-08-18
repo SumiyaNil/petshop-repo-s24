@@ -26,7 +26,8 @@ class CustomerController
         $validation = Validator::make($request->all(),[
          'customer_name'=>'required|max:20',
          'customer_number'=>'required',
-         'customer_image'=>'required|file|max:1024'
+         'customer_image'=>'required|file|max:1024',
+         'location'=>'required',
          
         ]);
         if($validation->fails())
@@ -51,6 +52,7 @@ class CustomerController
          Customer::create([
             'name'=>$request->customer_name,
             'number'=>$request->customer_number,
+            'location'=>$request->location,
             'image'=>$fileName
          ]);
          return redirect()->route('customer.list');

@@ -12,12 +12,14 @@ class CustomerController
     public function register(Request $request)
     {
       //validation
-      // dd($request->all());
+    //  dd($request->all());
+      
       $validation = Validator::make($request->all(),[
         'customer_name'=>'required',
         'email'=>'required|email',
         'password'=>'required|confirmed|min:4',
         'mobile_number'=>'required|min:11|max:11',
+        
         //'customer_image'=>'required|file|max:1024'
 
       ]);
@@ -39,6 +41,7 @@ class CustomerController
         'email'=>$request->email,
         'password'=>bcrypt($request->password),
         'number'=>$request->mobile_number,
+        'location'=>$request->location,
         //'image'=>$fileName
       ]);
       notify()->success('Customer Registration Successful.');

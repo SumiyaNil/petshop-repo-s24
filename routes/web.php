@@ -6,12 +6,13 @@ use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\FosterController;
 use App\Http\Controllers\Frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\Frontend\ProductController as FrontendProductController;
 use App\Http\Controllers\Frontend\AccessoriesController as FrontendAccessoriesController;
 use App\Http\Controllers\Frontend\CustomerController as FrontendCustomerController;
+use App\Http\Controllers\Frontend\FosterController as FrontendFosterController;
 use App\Http\Controllers\Frontend\ProfileController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\MasterController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
@@ -42,11 +43,16 @@ Route::get('/search',[FrontendAccessoriesController::class,'search'])->name('sea
 //logout and checkout
 Route::group(['middleware'=>'customer_auth'],function(){
    Route::get('/logout',[FrontendCustomerController::class,'logout'])->name('frontend.logout');
-   Route::get('checkout',[OrderController::class,'checkout'])->name('checkout');
+   Route::get('/checkout',[OrderController::class,'checkout'])->name('checkout');
    Route::post('/placeorder',[OrderController::class,'placeOrder'])->name('place.order');
    Route::get('/profile-page',[ProfileController::class,'profilePage'])->name("profile.page");
    Route::get('/profile-order',[ProfileController::class,'profileOrder'])->name('profile.order');
    Route::get('/view-Invoice/{order_id}',[OrderController::class,'viewInvoice'])->name('view.invoice');
+   Route::get('/foster-form',[FrontendFosterController::class,'form'])->name('frontend.foster');
+   Route::post('/foster-store',[FrontendFosterController::class,'store'])->name('foster.store');
+   Route::get('/view-foster',[FrontendFosterController::class,'viewfoster'])->name('view.foster');
+   Route::get('/accept-foster/{fosterID}',[FrontendFosterController::class,'acceptFoster'])->name('accept.foster');
+   
   
 });
 
@@ -82,8 +88,8 @@ Route::group(['prefix'=>'admin'],function(){
        Route::get('/customer',[CustomerController::class,'customer'])->name('customer.list');
        Route::get('/customer-form',[CustomerController::class,'form'])->name('customer.form');
        Route::post('/customer-store',[CustomerController::class,'store'])->name('customer.store');
-    
 
+       
 
        //Route::get('/animal',[AnimalController::class,'animal'])->name('animal');
     
@@ -98,12 +104,6 @@ Route::group(['prefix'=>'admin'],function(){
        Route::get('/order',[OrderController::class,'order'])->name('order.list');
 
 
-       Route::get('/fostercare',[FosterController::class,'foster'])->name('foster.list');
-       Route::get('/foster-form',[FosterController::class,'form'])->name('foster.form');
-       Route::post('foster-store',[FosterController::class,'store'])->name('foster.store');
-
-
-    
        Route::get('/payment',[PaymentController::class,'list'])->name('payment.list');
        Route::get('/payment-form',[PaymentController::class,'form'])->name('payment.form');
        Route::post('/payment-store',[PaymentController::class,'store'])->name('payment.store');
@@ -111,7 +111,11 @@ Route::group(['prefix'=>'admin'],function(){
        Route::get('/category',[CategoryController::class,'list'])->name('category.list');
        Route::get('/categoryform',[CategoryController::class,'form'])->name('category.form');
        Route::post('/categorystore',[CategoryController::class,'store'])->name('category.store');
-    
+       //location
+       Route::get('/location-list',[LocationController::class,'list'])->name('location.list');
+       Route::get('/location-form',[LocationController::class,'form'])->name('location.form');
+       Route::post('/location-store',[LocationController::class,'store'])->name('location.store');
+
 
     });
 

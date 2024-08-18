@@ -1,9 +1,11 @@
 @extends('frontend.master')
 @section('content')
 <div class="container">
-    <div class="card">
+<button class="btn btn-info" onClick="printReport()">Print</button>
     
-        <div class="card-header">
+    <div class="card" id="printArea">
+    
+        <div class="card-header" >
             Invoice
             <strong>{{$order->created_at}}</strong>
             <span class="float-right"> <strong>Status:</strong> {{$order->status}}</span>
@@ -109,5 +111,17 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function printReport()
+    {
+        var printContents = document.getElementById("printArea").innerHTML;
+			var originalContents = document.body.innerHTML;
 
+			document.body.innerHTML = printContents;
+
+			window.print();
+
+			document.body.innerHTML = originalContents;
+    }
+</script>
 @endsection

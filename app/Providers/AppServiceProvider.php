@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
+use App\Models\Foster;
+use App\Models\Location;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 
@@ -23,6 +26,11 @@ class AppServiceProvider extends ServiceProvider
     {
         
      Paginator::useBootstrap();
-
+     $allcategories=Category::all();
+        view()->share('categories',$allcategories);
+        $location=Location::all();
+        view()->share('location',$location);
+        $foster=Foster::all();
+        view()->share('foster',$foster);
     }
 }
