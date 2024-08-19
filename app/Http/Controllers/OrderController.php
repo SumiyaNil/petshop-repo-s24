@@ -12,6 +12,28 @@ class OrderController
 {
     public function order()
     {
+        $allorder = Order::paginate(5);
+        return view('backend.order',compact('allorder'));
+    }
+
+
+    public function report()
+    {
+       
+       if(request()->has('from_date') && request()->has('to_date'))
+       {
+      $allorder = Order::whereBetween('created_at',[request()->from_date,request()->to_date])->get();
+        return view('backend.report',compact('allorder'));
+       }
+       
+       $allorder=Order::all();
+       return view('backend.report',compact('allorder'));
+    }
+
+
+    public function viewOrder()
+    {
+        $allorder = Order::all();
         return view('backend.order');
     }
 

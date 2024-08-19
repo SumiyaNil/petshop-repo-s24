@@ -16,7 +16,7 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\MasterController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\ReportController;
+
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -95,13 +95,14 @@ Route::group(['prefix'=>'admin'],function(){
     
 
 
-       Route::get('/report',[ReportController::class,'report'])->name('report');
-
+       Route::get('/report',[OrderController::class,'report'])->name('report');
+       
 
        Route::get('/service',[ServiceController::class,'service']);
 
        
        Route::get('/order',[OrderController::class,'order'])->name('order.list');
+       Route::get('/order-view',[OrderController::class,'orderView'])->name('order.view');
 
 
        Route::get('/payment',[PaymentController::class,'list'])->name('payment.list');
