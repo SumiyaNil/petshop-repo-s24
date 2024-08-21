@@ -14,6 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'customer_auth' => \App\Http\Middleware\CustomerAuth::class,
         ]);
+        
     })
     ->withMiddleware(function (Middleware $middleware) {
         //

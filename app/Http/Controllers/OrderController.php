@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Frontend\SslCommerzPaymentController;
+use App\Mail\OrderEmail;
 use App\Models\Accessories;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use Illuminate\Http\Request;
+use Illuminate\support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+
 
 class OrderController
 {
@@ -15,8 +19,42 @@ class OrderController
         $allorder = Order::paginate(5);
         return view('backend.order',compact('allorder'));
     }
+    //backend view order to update
+    public function view_order($OID)
+    {
+        $order = Order::find($OID);
+        return view('backend.page.orderview',compact('order'));
+    }
+    public function delete_order($oid)
+    {
+       $order = Order::find($oid)->delete();
+       notify()->success("Order deleted successfully");
+       return redirect()->back();
+    }
+    public function edit_order($eoid)
+    {
+        $order = Order::find($eoid);
+        return view('backend.page.editorder',compact('order'));
+    }
+    public function update_order(Request $request,$id)
+    {
+       $order=Order::find($id);
+       $order->update([
+        'receiver_name'=>$request->receiver_name,
+        'receiver_email'=>$request->receiver_email,
+        'receiver_mobile'=>$request->receiver_mobile,
+        'receiver_address'=>$request->receiver_address,
+        'payment_method'=>$request->payment_method,
+        'total_amount'=>$request->total_amount,
+       ]);
+       notify()->success("order updated successfully");
+       return redirect()->route('order.list');
+    }
 
 
+
+
+    //report for backend
     public function report()
     {
        
@@ -31,11 +69,11 @@ class OrderController
     }
 
 
-    public function viewOrder()
-    {
-        $allorder = Order::all();
-        return view('backend.order');
-    }
+    // public function viewOrder()
+    // {
+    //     $allorder = Order::all();
+    //     return view('backend.order');
+    // }
 
     public function addCart($pID)
     {
@@ -129,6 +167,7 @@ class OrderController
        {
         return view('frontend.page.checkout');
        }
+       
        public function placeOrder(Request $request)
        {
 
@@ -147,9 +186,8 @@ class OrderController
 
          //quary for store data into Orders table
          $cart=session()->get('basket');
+      
           $order =Order::create([
-           
-
            'receiver_name'=>$request->receiver_name,
            'receiver_email'=>$request->email,
            'receiver_address'=>$request->address,
@@ -157,19 +195,12 @@ class OrderController
            'payment_method'=>$request->paymentMethod,
            'customer_id'=>auth('customerGuard')->user()->id,
            'total_amount'=>array_sum(array_column($cart,'subtotal'))
-           
-
-           
-           
-           
           ]);
           
-
+           
 
           //order details
          
-          
-          
           foreach($cart as $singleData)
           {
             OrderDetail::create([
@@ -184,6 +215,16 @@ class OrderController
           }
           notify()->success('Order place successfully.');
           session()->forget('basket');
+          Mail::to($request->email)->send(new OrderEmail($order));
+
+
+          //initiate payment
+
+          $ssl=new SslCommerzPaymentController;
+          $ssl->index($order);
+
+
+
           return redirect()->route('frontend.home');
   
 

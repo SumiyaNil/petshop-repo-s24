@@ -5,7 +5,7 @@
         <div class="col-sm-4 col-lg-3 text-center text-sm-start">
           <div class="main-logo">
             <a href="index.html">
-              <img src="{{url('frontend/images/logo.png')}}" alt="logo" class="img-fluid">
+              <img src="{{url('/logo.png')}}" alt="logo" class="img-fluid" width="300" height="300">
             </a>
           </div>
         </div>
@@ -155,7 +155,7 @@
               </li>
               <li class="nav-item">
                 
-                <a href="{{route('frontend.foster')}}" class="nav-link">({{$foster->count()}}) New Foster Request</a>
+                <a href="{{route('frontend.foster')}}" class="nav-link"> New Foster Request</a>
                     
               </li>
               <li class="nav-item">

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AccessoriesController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminProfileController;
 use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\Frontend\AccessoriesController as FrontendAccessoriesCo
 use App\Http\Controllers\Frontend\CustomerController as FrontendCustomerController;
 use App\Http\Controllers\Frontend\FosterController as FrontendFosterController;
 use App\Http\Controllers\Frontend\ProfileController;
+use App\Http\Controllers\Frontend\SslCommerzPaymentController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\MasterController;
 use App\Http\Controllers\OrderController;
@@ -25,6 +27,21 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 //for website panel
+//sslpayment start
+Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
+Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
+
+Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
+Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
+
+Route::post('/success', [SslCommerzPaymentController::class, 'success']);
+Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
+Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
+
+Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
+
+//sslpayment end
+
 
 Route::get('/',[FrontendHomeController::class, 'home'])->name('frontend.home');
 Route::get('/product',[FrontendProductController::class,'allproduct'])->name('frontend.product');
@@ -53,7 +70,7 @@ Route::group(['middleware'=>'customer_auth'],function(){
    Route::get('/view-foster',[FrontendFosterController::class,'viewfoster'])->name('view.foster');
    Route::get('/accept-foster/{fosterID}',[FrontendFosterController::class,'acceptFoster'])->name('accept.foster');
    
-  
+   
 });
 
 
@@ -83,14 +100,14 @@ Route::group(['prefix'=>'admin'],function(){
        Route::get('/accessories-delete/delete/{acc_id}',[AccessoriesController::class,'delete'])->name('accessories.delete');
        Route::get('/accessories-view/view/{acc_id}',[AccessoriesController::class,'view_accessories'])->name('accessories.view');
        Route::get('/accessories-edit/edit/{acc_id}',[AccessoriesController::class,'edit_accessories'])->name('accessories.edit');
-       Route::post('/accessories-update/update/{acc_id}}',[AccessoriesController::class,'update_accessories'])->name('accessories.update');
+       Route::post('/accessories-update/update/{acc_id}',[AccessoriesController::class,'update_accessories'])->name('accessories.update');
        
        Route::get('/customer',[CustomerController::class,'customer'])->name('customer.list');
        Route::get('/customer-form',[CustomerController::class,'form'])->name('customer.form');
        Route::post('/customer-store',[CustomerController::class,'store'])->name('customer.store');
 
        
-
+       Route::get('/admin-profile',[AdminProfileController::class,'admin_profile'])->name('admin.profile');
        //Route::get('/animal',[AnimalController::class,'animal'])->name('animal');
     
 
@@ -102,8 +119,10 @@ Route::group(['prefix'=>'admin'],function(){
 
        
        Route::get('/order',[OrderController::class,'order'])->name('order.list');
-       Route::get('/order-view',[OrderController::class,'orderView'])->name('order.view');
-
+       Route::get('/order-view/{order_id}',[OrderController::class,'view_order'])->name('order.view');
+       Route::get('/order-delete/delete/{order_ID}',[OrderController::class,'delete_order'])->name('order.delete');
+       Route::get('/order-edit/edit/{orderID}',[OrderController::class,'edit_order'])->name('order.edit');
+       Route::post('/order-update/update/{orderId}',[OrderController::class,'update_order'])->name('order.update');
 
        Route::get('/payment',[PaymentController::class,'list'])->name('payment.list');
        Route::get('/payment-form',[PaymentController::class,'form'])->name('payment.form');
