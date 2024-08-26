@@ -17,5 +17,6 @@ class ProfileController
     {
         $orders=Order::where('customer_id',auth('customerGuard')->user()->id)->get();
         return view('frontend.page.orderProfile',compact('orders'));
+        
     }
 }

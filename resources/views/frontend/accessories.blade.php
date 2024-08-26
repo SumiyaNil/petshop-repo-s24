@@ -23,8 +23,8 @@
             </div>
               
               <div class="d-flex flex-column mb-4 lead">
-                <span class="mb-2">{{$acc->description}}</span>
-                <span class="mb-2">{{$acc->stock}}</span>
+                <span class="mb-2">Description: {{$acc->description}}</span>
+                <span class="mb-2">stock: {{$acc->stock}}</span>
                 <span style="color: transparent;">0</span>
               </div>
             </div>

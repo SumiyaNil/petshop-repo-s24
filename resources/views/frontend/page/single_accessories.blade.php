@@ -15,17 +15,23 @@
                         <div class="small mb-1">SKU: BST-498</div>
                         <h1 class="display-5 fw-bolder">{{$singleAccessories->name}}</h1>
                         <div class="fs-5 mb-5">
-                            <span class="text-decoration-line-through">{{$singleAccessories->price}} .BDT</span>
+                            <span class="text-decoration">{{$singleAccessories->price}} .BDT</span>
+
+                            <p><span class="text-decoration"> {{$singleAccessories->stock}} stock available</span></p>
                            
                         </div>
                         <p class="lead">description here</p>
                         <div class="d-flex">
                             <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 300px">
-                            <button class="btn btn-outline-dark flex-shrink-0" type="button">
-                                <i class="bi-cart-fill me-1"></i>
-                                Add to cart
-                            </button>
                         </div>
+
+                            <div class="d-flex flex-row">
+                             <a href="{{route('add.cart',$singleAccessories->id)}}" type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary" style="color:black;">
+                              Add to cart
+                             </a>
+                          
+                            </div>
+                        
                     </div>
                 </div>
             </div>

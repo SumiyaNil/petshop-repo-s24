@@ -16,7 +16,7 @@
           </h4>
           <ul class="list-group mb-3">
             <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
+              <!-- <div>
                 <h6 class="my-0">Accessories name</h6>
                 <small class="text-muted">Brief description</small>
               </div>
@@ -42,7 +42,7 @@
                 <small>EXAMPLECODE</small>
               </div>
               <span class="text-success">-$5</span>
-            </li>
+            </li> -->
             <li class="list-group-item d-flex justify-content-between">
               <span>Total (BDT)</span>
               <strong>

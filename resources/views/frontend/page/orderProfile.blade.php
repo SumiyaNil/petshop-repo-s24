@@ -24,7 +24,10 @@
       <td>{{$order->total_amount}}</td>
       <td>{{$order->status}}</td>
       <td>
-        <a href="{{route('view.invoice',$order->id)}}">View Order</a>
+        <a href="{{route('view.invoice',$order->id)}}" class="btn btn-info">View Order</a>
+        @if($order->status=='pending')
+        <a href="{{route('delete.profile.order',$order->id)}}" class="btn btn-danger">Cancal order</a>
+        @endif
       </td>
     </tr>
     @endforeach

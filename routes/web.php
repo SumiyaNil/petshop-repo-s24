@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccessoriesController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminProfileController;
+use App\Http\Controllers\BreedController;
 use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
@@ -65,6 +66,7 @@ Route::group(['middleware'=>'customer_auth'],function(){
    Route::get('/profile-page',[ProfileController::class,'profilePage'])->name("profile.page");
    Route::get('/profile-order',[ProfileController::class,'profileOrder'])->name('profile.order');
    Route::get('/view-Invoice/{order_id}',[OrderController::class,'viewInvoice'])->name('view.invoice');
+   Route::get('/delete-profile-order/{orderId}',[OrderController::class,'deleteProfileOrder'])->name('delete.profile.order');
    Route::get('/foster-form',[FrontendFosterController::class,'form'])->name('frontend.foster');
    Route::post('/foster-store',[FrontendFosterController::class,'store'])->name('foster.store');
    Route::get('/view-foster',[FrontendFosterController::class,'viewfoster'])->name('view.foster');
@@ -135,6 +137,13 @@ Route::group(['prefix'=>'admin'],function(){
        Route::get('/location-list',[LocationController::class,'list'])->name('location.list');
        Route::get('/location-form',[LocationController::class,'form'])->name('location.form');
        Route::post('/location-store',[LocationController::class,'store'])->name('location.store');
+       //breed
+       Route::get('/breedlist',[BreedController::class,'list'])->name('breed.list');
+       Route::get('/breedform',[BreedController::class,'form'])->name('breed.form');
+       Route::post('/breedstore',[BreedController::class,'store'])->name('breed.store');
+
+       //breed view
+       Route::get('/breedview',[BreedController::class,'viewBreed'])->name('view.breed');
 
 
     });

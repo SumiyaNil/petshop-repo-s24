@@ -46,9 +46,9 @@ class FosterController
     {
         
         $allfoster=Foster::where('customer_id',auth('customerGuard')->user()->id)->paginate(5);
-        // dd($foster);
+        $fostercount = count($allfoster);
      
-        return view('frontend.page.fosterview',compact('allfoster'));
+        return view('frontend.page.fosterview',compact('allfoster','fostercount'));
         //query
 
     }

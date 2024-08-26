@@ -25,6 +25,12 @@
                 Accessories
               </a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="{{route('breed.list')}}">
+                <svg class="bi"><use xlink:href="#file-earmark"/></svg>
+                Breed
+              </a>
+            </li>
            
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="{{route('customer.list')}}">

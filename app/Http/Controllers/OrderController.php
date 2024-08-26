@@ -214,6 +214,8 @@ class OrderController
             ]);
           }
           notify()->success('Order place successfully.');
+          $accessories=Accessories::find($singleData['acc_id']);
+          $accessories->decrement('stock',$singleData['quantity']);
           session()->forget('basket');
           Mail::to($request->email)->send(new OrderEmail($order));
 
@@ -229,10 +231,29 @@ class OrderController
   
 
        }
+       //Profile details like invoice and cancel
        public function viewInvoice($order_id)
        {
         $order=Order::with('orderDetails')->find($order_id);
         return view('frontend.page.invoice',compact('order'));
+       }
+       public function deleteProfileOrder($orderID)
+       {
+        $order= Order::find($orderID);
+        $order->update([
+            'status'=>'cancel',
+        ]);
+         
+
+        $items=OrderDetail::where('order_id',$orderID)->get();
+        foreach($items as $item)
+        {
+            $accessories=Accessories::find($item->acc_id);
+            $accessories->increment('stock',$item->quantity);
+
+        }
+        notify()->success("order cancelled");
+        return redirect()->back();
        }
 
     

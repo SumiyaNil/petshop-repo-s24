@@ -154,7 +154,7 @@
         <a href="#"><div class="circle-tile-heading yellow "><i class="fa fa-envelope fa-fw fa-3x"></i></div></a>
         <div class="circle-tile-content yellow">
           <div class="circle-tile-description text-faded"> Total foster order </div>
-          <div class="circle-tile-number text-faded "></div>
+          <div class="circle-tile-number text-faded ">{{$fostercount}}</div>
           <a class="circle-tile-footer" href="#">More Info<i class="fa fa-chevron-circle-right"></i></a>
         </div>
       </div>
@@ -164,8 +164,8 @@
       <div class="circle-tile ">
         <a href="#"><div class="circle-tile-heading orange"><i class="fa fa-comments fa-fw fa-3x"></i></div></a>
         <div class="circle-tile-content orange">
-          <div class="circle-tile-description text-faded"> Messages </div>
-          <div class="circle-tile-number text-faded ">10</div>
+          <div class="circle-tile-description text-faded"> Total Accessories </div>
+          <div class="circle-tile-number text-faded ">{{$allaccessories}}</div>
           <a class="circle-tile-footer" href="#">More Info<i class="fa fa-chevron-circle-right"></i></a>
         </div>
       </div>

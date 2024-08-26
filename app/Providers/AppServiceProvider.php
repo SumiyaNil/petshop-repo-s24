@@ -32,5 +32,7 @@ class AppServiceProvider extends ServiceProvider
         view()->share('location',$location);
         $foster=Foster::all();
         view()->share('foster',$foster);
+        $fostercount=Foster::find('$id');
+        view()->share('fostercount',$fostercount);
     }
 }

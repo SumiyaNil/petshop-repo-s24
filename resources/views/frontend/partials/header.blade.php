@@ -155,7 +155,9 @@
               </li>
               <li class="nav-item">
                 
-                <a href="{{route('frontend.foster')}}" class="nav-link"> New Foster Request</a>
+                <a href="{{route('frontend.foster')}}" class="nav-link"> New Foster Request 
+                    
+                </a>
                     
               </li>
               <li class="nav-item">
@@ -177,8 +179,10 @@
                 <li>
                   <!-- foster -->
 
-                  <a href="{{route('view.foster')}}" class="mx-3">
-                    <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
+                  <a href="{{route('view.foster')}}" class="mx-3">Foster order
+                  <span class="position-absolute translate-middle badge rounded-circle bg-primary pt-2">
+                      {{$fostercount}}             
+                    </span>
                   </a>
                 </li>
                <!-- cart -->
@@ -188,7 +192,16 @@
                     <!-- aria-controls="offcanvasCart" -->
                     <iconify-icon icon="mdi:cart" class="fs-4 position-relative"></iconify-icon>
                     <span class="position-absolute translate-middle badge rounded-circle bg-primary pt-2">
-                                   
+                      
+@if(session()->has('basket'))
+
+{{ count(session()->get('basket'))  }}
+
+@else
+
+0
+
+@endif             
                     </span>
                   </a>
                 </li>
@@ -218,6 +231,7 @@ if(session()->has('basket')){
 <!-- ternary operator -->
 
 <!-- (condition) ? if block : else block -->
+
 @if(session()->has('basket'))
 
 {{ count(session()->get('basket')) }} item(s) - {{ array_sum(array_column(session()->get('basket'),'subtotal')) }}

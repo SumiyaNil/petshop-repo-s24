@@ -11,7 +11,7 @@ class CustomerController
 {
     public function customer()
     {
-        $allcustomer = Customer::with('foster')->paginate(5);
+        $allcustomer = Customer::paginate(5);
         return view('backend.customer',compact('allcustomer'));
     }
     public function form()
