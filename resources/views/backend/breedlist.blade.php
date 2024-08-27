@@ -24,9 +24,9 @@
       <td>{{$breed->status}}</td>
       
       <td>
-        <a class="btn btn-success" href="">View</a>
-        <a class="btn btn-info" href="">Edit</a>
-        <a class="btn btn-danger" href="">Delete</a>
+        <a class="btn btn-success" href="{{route('view.breed',$breed->id)}}">View</a>
+        <a class="btn btn-info" href="{{route('edit.breed',$breed->id)}}">Edit</a>
+        <a class="btn btn-danger" href="{{route('delete.breed',$breed->id)}}">Delete</a>
       </td>
     </tr>
     @endforeach

@@ -26,4 +26,32 @@ class BreedController
       ]);
       return redirect()->back();
     }
+    public function viewBreed($id)
+    {
+      $breed=Breed::find($id);
+      return view('backend.page.viewBreed',compact('breed'));
+    }
+    public function deleteBreed($id)
+    {
+      $breed=Breed::find($id)->delete();
+      notify()->success("breed deleted successfully");
+      return redirect()->back();
+
+    }
+    public function editBreed($id)
+    {
+      $breed=Breed::find($id);
+      return view('backend.breadform',compact('breed'));
+      
+    }
+    public function updateBreed(Request $request,$id)
+    {
+      $breed=Breed::find($id);
+      $breed->update([
+        'name'=>$request->breed_name,
+        'cost'=>$request->cost,
+      ]);
+      notify()->success("breed details updated");
+      return redirect()->back();
+    }
 }

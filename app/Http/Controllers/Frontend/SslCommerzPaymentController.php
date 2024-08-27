@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Library\SslCommerz\SslCommerzNotification;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -18,7 +19,7 @@ class SslCommerzPaymentController
         $post_data = array();
         $post_data['total_amount'] = $order->total_amount; # You cant not pay less than 10
         $post_data['currency'] = "BDT";
-        $post_data['tran_id'] = uniqid(); // tran_id must be unique
+        $post_data['tran_id'] = $order->id; // tran_id must be unique
 
         # CUSTOMER INFORMATION
         $post_data['cus_name'] = $order->receiver_name;
@@ -71,19 +72,16 @@ class SslCommerzPaymentController
     public function success(Request $request)
     {
         
-        $tran_id = $request->input('tran_id');
+        $order_id = $request->input('tran_id');
         $amount = $request->input('amount');
         $currency = $request->input('currency');
 
         $sslc = new SslCommerzNotification();
+        $order= Order::find($order_id);
+        
 
-        #Check order status in order tabel against the transaction id or order id.
-        $order_details = DB::table('orders')
-            ->where('transaction_id', $tran_id)
-            ->select('transaction_id', 'status', 'currency', 'amount')->first();
-
-        if ($order_details->status == 'Pending') {
-            $validation = $sslc->orderValidate($request->all(), $tran_id, $amount, $currency);
+        if ($order->payment_status == 'pending') {
+            $validation = $sslc->orderValidate($request->all(), $order_id, $amount, $currency);
 
             if ($validation) {
                 /*
@@ -91,23 +89,23 @@ class SslCommerzPaymentController
                 in order table as Processing or Complete.
                 Here you can also sent sms or email for successfull transaction to customer
                 */
-                $update_product = DB::table('orders')
-                    ->where('transaction_id', $tran_id)
-                    ->update(['status' => 'Processing']);
+                $order->update([
+                    'payment_status'=>'success',
+                    'trx_id'=>$request->bank_tran_id
+                ]);
 
-                echo "<br >Transaction is successfully Completed";
+                notify()->success('Order place successfully.');
+
+               
+                return redirect()->route('home');
+            
             }
-        } else if ($order_details->status == 'Processing' || $order_details->status == 'Complete') {
-            /*
-             That means through IPN Order status already updated. Now you can just show the customer that transaction is completed. No need to udate database.
-             */
-            echo "Transaction is successfully Completed";
-        } else {
-            #That means something wrong happened. You can redirect customer to your product page.
-            echo "Invalid Transaction";
+            notify()->error('something went wrong');
+            return redirect()->route('home');
+
         }
-
-
+        notify()->error('something went wrong with status');
+            return redirect()->route('home');
     }
 
     public function fail(Request $request)

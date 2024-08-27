@@ -8,9 +8,10 @@ use App\Models\Accessories;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
-
+use Throwable;
 
 class OrderController
 {
@@ -183,10 +184,13 @@ class OrderController
             notify()->error($validation->getMessageBag());
             return redirect()->back();
          }
+        try{
 
+        
          //quary for store data into Orders table
          $cart=session()->get('basket');
-      
+         DB::beginTransaction();
+
           $order =Order::create([
            'receiver_name'=>$request->receiver_name,
            'receiver_email'=>$request->email,
@@ -212,25 +216,36 @@ class OrderController
                
                
             ]);
+            $accessories=Accessories::find($singleData['acc_id']);
+            $accessories->decrement('stock',$singleData['quantity']);
           }
-          notify()->success('Order place successfully.');
-          $accessories=Accessories::find($singleData['acc_id']);
-          $accessories->decrement('stock',$singleData['quantity']);
+          
+          
+          DB::commit();
           session()->forget('basket');
           Mail::to($request->email)->send(new OrderEmail($order));
 
 
-          //initiate payment
+          if($request->paymentMethod != 'cod')
+        {
+            //jodi cod na hoy thats mean online payment.
+            //call ssl commerz to pay
+            $payment=new SslCommerzPaymentController();
 
-          $ssl=new SslCommerzPaymentController;
-          $ssl->index($order);
+            $payment->index($order);
+            
+        }
 
 
+    }catch(Throwable $exception){
 
-          return redirect()->route('frontend.home');
-  
+        DB::rollBack();
+        notify()->error($exception->getMessage());
 
-       }
+        return redirect()->back();
+    }
+
+ }
        //Profile details like invoice and cancel
        public function viewInvoice($order_id)
        {
@@ -248,8 +263,8 @@ class OrderController
         $items=OrderDetail::where('order_id',$orderID)->get();
         foreach($items as $item)
         {
-            $accessories=Accessories::find($item->acc_id);
-            $accessories->increment('stock',$item->quantity);
+            $allaccessories=Accessories::find($item->accessories_id);
+            $allaccessories->increment('stock',$item->quantity);
 
         }
         notify()->success("order cancelled");

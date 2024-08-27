@@ -12,7 +12,7 @@
                     <div class="col-md-6">
                         <img class="card-img-top mb-5 mb-md-0" src="{{url('/uploads/'.$singleAccessories->image)}}" alt="product image" style="width: 300px;"></div>
                     <div class="col-md-6">
-                        <div class="small mb-1">SKU: BST-498</div>
+                    
                         <h1 class="display-5 fw-bolder">{{$singleAccessories->name}}</h1>
                         <div class="fs-5 mb-5">
                             <span class="text-decoration">{{$singleAccessories->price}} .BDT</span>

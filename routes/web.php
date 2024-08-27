@@ -143,7 +143,10 @@ Route::group(['prefix'=>'admin'],function(){
        Route::post('/breedstore',[BreedController::class,'store'])->name('breed.store');
 
        //breed view
-       Route::get('/breedview',[BreedController::class,'viewBreed'])->name('view.breed');
+       Route::get('/breedview/{breedId}',[BreedController::class,'viewBreed'])->name('view.breed');
+       Route::get('/breededit/{breedID}',[BreedController::class,'editBreed'])->name('edit.breed');
+       Route::get('/breed-delete/{breedid}',[BreedController::class,'deleteBreed'])->name('delete.breed');
+       Route::post('/breed-update/update/{bID}',[BreedController::class,'updateBreed'])->name('update.breed');
 
 
     });
