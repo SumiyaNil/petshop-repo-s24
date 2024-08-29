@@ -79,6 +79,8 @@ class OrderController
     public function addCart($pID)
     {
         $accessories=Accessories::find($pID);
+        if($accessories->stock>0)
+        {
         $myCart=session()->get('basket');
 
 
@@ -100,7 +102,12 @@ class OrderController
         notify()->success('Product added to cart.');
         return redirect()->back();
         } else{
+            
+            
             if(array_key_exists($pID,$myCart)){
+
+                if($accessories->stock>$myCart[$pID]['quantity'])
+                {
                 $myCart[$pID]['quantity'] = $myCart[$pID]['quantity'] + 1;
                 $myCart[$pID]['subtotal'] = $myCart[$pID]['quantity'] * $myCart[$pID]['acc_price'];
 
@@ -109,6 +116,11 @@ class OrderController
                 notify()->success('Quantity updated.');
                 return redirect()->back();
             }
+            else{
+                notify()->error('Quantity is not available');
+                return redirect()->back();
+            }
+        }
             else{
                 $myCart[$accessories->id]=[
                     'acc_id'=>$accessories->id,
@@ -125,6 +137,10 @@ class OrderController
                 return redirect()->back();
             }
         }
+    }else{
+        notify()->error('stock is not available');
+        return redirect()->back();
+    }
 
     }        
        public function viewcart()
@@ -157,9 +173,6 @@ class OrderController
           notify()->success('Item remove.');
    
           return redirect()->back();
-   
-   
-   
           
    
        }
@@ -222,18 +235,25 @@ class OrderController
           
           
           DB::commit();
-          session()->forget('basket');
+          
           Mail::to($request->email)->send(new OrderEmail($order));
 
 
           if($request->paymentMethod != 'cod')
         {
-            //jodi cod na hoy thats mean online payment.
-            //call ssl commerz to pay
             $payment=new SslCommerzPaymentController();
 
             $payment->index($order);
             
+        }
+        if($request->paymentMethod =='cod')
+        {
+            $order->update([
+                'payment_status'=>'success',
+            ]);
+            notify()->success('Order place successfully');
+            session()->forget('basket');
+            return redirect()->route('frontend.home');
         }
 
 
@@ -271,5 +291,23 @@ class OrderController
         return redirect()->back();
        }
 
+      public function updateCart(Request $request,$id)
+      {
+        $cart=session()->get('basket');
+        $accessories=Accessories::find($id);
+        if($accessories->stock >=$request->quantity)
+         {
+            $cart[$id]['quantity']=$request->quantity;
+            $cart[$id]['subtotal']=$request->quantity*$cart[$id]['acc_price'];
+            
+            session()->put('basket',$cart);
+            notify()->success('cart stock updated');
+            return redirect()->back();
+         }
+         else{
+            notify()->error('stock is not available');
+            return redirect()->back();
+         }
+      }
     
 }

@@ -53,6 +53,7 @@ class SslCommerzPaymentController
         $post_data['value_b'] = "ref002";
         $post_data['value_c'] = "ref003";
         $post_data['value_d'] = "ref004";
+       // $post_data['val_id'] = "ref004";
 
        //update order
 
@@ -95,58 +96,102 @@ class SslCommerzPaymentController
                 ]);
 
                 notify()->success('Order place successfully.');
-
+                session()->forget('basket');
                
-                return redirect()->route('home');
+                return redirect()->route('frontend.home');
             
             }
             notify()->error('something went wrong');
-            return redirect()->route('home');
+            return redirect()->route('frontend.home');
 
         }
         notify()->error('something went wrong with status');
-            return redirect()->route('home');
+            return redirect()->route('frontend.home');
     }
 
     public function fail(Request $request)
     {
-        $tran_id = $request->input('tran_id');
+        // $order_id = $request->input('tran_id');
 
-        $order_details = DB::table('orders')
-            ->where('transaction_id', $tran_id)
-            ->select('transaction_id', 'status', 'currency', 'amount')->first();
+        // $order_details = DB::table('orders')
+        //     ->where('transaction_id', $order_id)
+        //     ->select('transaction_id', 'status', 'currency', 'amount')->first();
+        $order_id = $request->input('tran_id');
+        $amount = $request->input('amount');
+        $currency = $request->input('currency');
 
-        if ($order_details->status == 'Pending') {
-            $update_product = DB::table('orders')
-                ->where('transaction_id', $tran_id)
-                ->update(['status' => 'Failed']);
-            echo "Transaction is Falied";
-        } else if ($order_details->status == 'Processing' || $order_details->status == 'Complete') {
-            echo "Transaction is already Successful";
-        } else {
-            echo "Transaction is Invalid";
+        
+        $sslc = new SslCommerzNotification();
+        $order= Order::find($order_id);
+        //dd($request->all());
+
+        if ($order->payment_status == 'pending') {
+            $validation = $sslc->orderValidate($request->all(), $order_id, $amount, $currency);
+
+            if ($validation) {
+                
+                $order->update([
+                    'payment_status'=>'Failed',
+                    'trx_id'=>$request->bank_tran_id
+                ]);
+
+                notify()->success('Order place Failed.');
+                
+               
+                return redirect()->route('frontend.home');
+            
+            }
+            notify()->error('something went wrong');
+            return redirect()->route('frontend.home');
+
         }
+        notify()->error('something went wrong ');
+            return redirect()->route('frontend.home');
+        
 
     }
 
     public function cancel(Request $request)
-    {
-        $tran_id = $request->input('tran_id');
+    { 
+        
+        /*$order_id = $request->input('tran_id');
 
         $order_details = DB::table('orders')
-            ->where('transaction_id', $tran_id)
-            ->select('transaction_id', 'status', 'currency', 'amount')->first();
+            ->where('transaction_id', $order_id)
+            ->select('transaction_id', 'status', 'currency', 'amount')->first();*/
+        $order_id = $request->input('tran_id');
+        $amount = $request->input('amount');
+        $currency = $request->input('currency');
 
-        if ($order_details->status == 'Pending') {
-            $update_product = DB::table('orders')
-                ->where('transaction_id', $tran_id)
-                ->update(['status' => 'Canceled']);
-            echo "Transaction is Cancel";
-        } else if ($order_details->status == 'Processing' || $order_details->status == 'Complete') {
-            echo "Transaction is already Successful";
-        } else {
-            echo "Transaction is Invalid";
+        $sslc = new SslCommerzNotification();
+        $order= Order::find($order_id);
+        
+
+        if ($order->payment_status == 'pending') {
+            $validation = $sslc->orderValidate($request->all(), $order_id, $amount, $currency);
+
+            if ($validation) {
+                
+                $order->update([
+                    'payment_status'=>'cancel',
+                    'trx_id'=>$request->bank_tran_id
+                ]);
+
+                notify()->success('Order place cancelled.');
+                
+               
+                return redirect()->route('frontend.home');
+            
+            }
+            notify()->error('something went wrong');
+            return redirect()->route('frontend.home');
+
         }
+        notify()->error('something went wrong');
+            return redirect()->route('frontend.home');
+       
+
+      
 
 
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\Breed;
 use App\Models\Foster;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -12,7 +13,9 @@ class FosterController
 {
     public function form()
     {
-        return view('frontend.page.fosterform');
+        $allfoster=Foster::with('breed')->get();
+        $allbreed=Breed::all();
+        return view('frontend.page.fosterform',compact('allfoster','allbreed'));
     }
 
     public function store(Request $request)
@@ -30,9 +33,10 @@ class FosterController
             notify()->error($validation->getMessageBag());
             return redirect()->back();
         }
+       // dd($request->all());
         Foster::create([
-           'fdate'=>$request->from_date,
-           'tdate'=>$request->to_date,
+           'fdate'=>date('Y-m-d',strtotime($request->from_date)),
+           'tdate'=>date('Y-m-d',strtotime($request->to_date)),
            'location'=>$request->location,
            'price'=>$request->foster_price,
            'instruction'=>$request->foster_instruction,

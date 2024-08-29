@@ -24,14 +24,21 @@
                         <div class="d-flex">
                             <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 300px">
                         </div>
-
+                        @if($singleAccessories->stock>0)
                             <div class="d-flex flex-row">
                              <a href="{{route('add.cart',$singleAccessories->id)}}" type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary" style="color:black;">
                               Add to cart
                              </a>
                           
                             </div>
-                        
+                        @else
+                        <div class="d-flex flex-row">
+                             <a disabled href="" type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary" style="color:black;">
+                              Add to cart
+                             </a>
+                          
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

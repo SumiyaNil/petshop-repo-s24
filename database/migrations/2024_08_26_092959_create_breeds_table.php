@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('breeds', function (Blueprint $table) {
             $table->id();
+            $table->integer('foster_id')->nullable();
             $table->string('name');
             $table->double('cost');
             $table->timestamps();

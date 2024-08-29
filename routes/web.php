@@ -29,17 +29,9 @@ use Illuminate\Support\Facades\Route;
 // });
 //for website panel
 //sslpayment start
-Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
-Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
 
-Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
-Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
 
-Route::post('/success', [SslCommerzPaymentController::class, 'success']);
-Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
-Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
 
-Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 
 //sslpayment end
 
@@ -55,6 +47,7 @@ Route::get('/accessories/show/{p_id}',[FrontendAccessoriesController::class,'sho
 //cart
 Route::get('/add-to-cart/{productID}',[OrderController::class,'addCart'])->name('add.cart');
 Route::get('/view-cart',[OrderController::class,'viewcart'])->name('view.cart');
+Route::post('/update-cart/{pID}',[OrderController::class,'updateCart'])->name('update.cart');
 Route::get('/clear-cart',[OrderController::class, 'clearCart'])->name('cart.clear');
 Route::get('/cart/item/delete/{id}',[OrderController::class, 'cartItemDelete'])->name('cart.item.delete');
 Route::get('/search',[FrontendAccessoriesController::class,'search'])->name('search');
@@ -71,7 +64,10 @@ Route::group(['middleware'=>'customer_auth'],function(){
    Route::post('/foster-store',[FrontendFosterController::class,'store'])->name('foster.store');
    Route::get('/view-foster',[FrontendFosterController::class,'viewfoster'])->name('view.foster');
    Route::get('/accept-foster/{fosterID}',[FrontendFosterController::class,'acceptFoster'])->name('accept.foster');
-   
+   Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
+   Route::post('/success', [SslCommerzPaymentController::class, 'success']);
+   Route::post('/fail',[SslCommerzPaymentController::class,'fail']);
+   Route::post('/cancel',[SslCommerzPaymentController::class,'cancel']);
    
 });
 

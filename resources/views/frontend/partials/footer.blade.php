@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col-md-3">
           <div class="footer-menu">
-            <img src="{{url('frontend/images/logo.png')}}" alt="logo">
+            <img src="{{url('/logo.png')}}" alt="logo">
             <p class="blog-paragraph fs-6 mt-3">Subscribe to our newsletter to get updates about our grand offers.</p>
             <div class="social-links">
               <ul class="d-flex list-unstyled gap-2">

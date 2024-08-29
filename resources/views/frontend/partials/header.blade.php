@@ -119,7 +119,7 @@
         <!-- Single button -->
 
         <div class="btn-group">
-
+        
           <button type="button" class="btn btn-shop-category dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
             Shop By Category <span class="caret"></span>
@@ -130,7 +130,9 @@
 
             @foreach ($categories as $cat)
 
-
+            <!-- <form id="search-form" class="text-center d-flex align-items-center" action="{{route('search')}}" method="">
+              <input type="text" value="{{request()->search_category}}" name="search_category" class="form-control border-0 bg-transparent" placeholder="Search here" />
+               -->
             <li><a href="">{{$cat->name}}</a></li>
 
             @endforeach
@@ -150,9 +152,7 @@
               <li class="nav-item">
                 <a href="{{route('frontend.accessories')}}" class="nav-link" >Accessories</a>
               </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">Order</a>
-              </li>
+              
               <li class="nav-item">
                 
                 <a href="{{route('frontend.foster')}}" class="nav-link"> New Foster Request 
@@ -160,19 +160,15 @@
                 </a>
                     
               </li>
-              <li class="nav-item">
-                <a href="contact.html" class="nav-link">Payment</a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">Others</a>
-              </li>
+             
+             
               
             </ul>
-
+           <!-- profile icon -->
             <div class="d-none d-lg-flex align-items-end">
               <ul class="d-flex justify-content-end list-unstyled m-0">
                 <li>
-                  <a href="account.html" class="mx-3">
+                  <a href="{{route('profile.page')}}" class="mx-3">
                     <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
                   </a>
                 </li>

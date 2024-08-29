@@ -11,9 +11,7 @@
   <div class="form-group">
     <label for="exampleInputPassword1">Cost</label>
 
-   <select name="cost" id="" type="radio">
-    <option value="1">Local(100.BDT)</option>
-    <option value="2">Persian(500.BDT)</option>
+   <input type="integer" name="cost" placeholder="Enter price for breeds" class="form-control">
    </select>
   </div>
  

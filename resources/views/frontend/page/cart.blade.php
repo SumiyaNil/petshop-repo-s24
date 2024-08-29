@@ -36,14 +36,19 @@
                   <i class="fas fa-minus"></i>
                 </button>
 
-                <input id="form1" min="0" name="quantity" value="{{$cartData['quantity']}}" type="number"
-                  class="form-control form-control-sm" />
-
+               
                 <button data-mdb-button-init data-mdb-ripple-init class="btn btn-link px-2"
                   onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
                   <i class="fas fa-plus"></i>
                 </button>
               </div>
+              <form action="{{route('update.cart',$cartData['acc_id'])}}" method="post">  
+                @csrf
+                <input id="form1" min="0" name="quantity" value="{{$cartData['quantity']}}" type="number"
+                  class="btn" />
+
+                <button class="btn btn-info active" type="submit"> Update</button>
+                  </form>
               <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                 <h5 class="mb-0"> {{$cartData['subtotal'] }}  </h5>
               </div>

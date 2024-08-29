@@ -22,10 +22,21 @@
           @endforeach
           </select>
   </div>
+ 
   <div class="form-group">
     <label for="exampleInputPassword1"> Charge</label>
-    <input name="foster_price" type="text" required class="form-control" id="exampleInputPassword1" placeholder="Enter charge price">
+
+    
+    
+      @foreach($allbreed as $breed)
+      
+      <input type="radio" name="foster_price" value="{{$breed->cost}}">
+        <label>{{$breed->name}} ({{$breed->cost}})</label>
+      </input>
+      @endforeach
+    
   </div>
+
   <div class="form-group">
     <label for="image">Instruction</label>
     <input name="foster_instruction" type="text" class="form-control" id="image" placeholder="enter your instruction for your pet">

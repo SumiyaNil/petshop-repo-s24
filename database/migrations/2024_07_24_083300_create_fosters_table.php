@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('fdate');
             $table->date('tdate');
             $table->string('location');
-            $table->double('price');
+            $table->double('price',2,10);
             $table->string('instruction');
             
             

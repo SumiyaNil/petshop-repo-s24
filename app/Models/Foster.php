@@ -14,4 +14,9 @@ class Foster extends Model
     {
         return $this->belongsTo(Location::class,'location');
     }
+    public function breed()
+    {
+        return $this->hasMany(Breed::class);
+    }
+    
 }
