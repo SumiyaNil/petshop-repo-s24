@@ -26,4 +26,13 @@ class HomeController
          
       
     }
+    //show frontend short by category
+    public function showCategory($id)
+    {
+        
+        $category=Accessories::find($id);
+        $allcategory=Accessories::where('category_id',$category->id)->get();
+        
+        return view('frontend.page.showSingleCategory',compact('allcategory'));
+    }
 }

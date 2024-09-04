@@ -9,6 +9,7 @@
       <th scope="col">Accessories Name</th>
       <th scope="col">Description</th>
       <th scope="col">Stock</th>
+      <th scope="col">Discount</th>
       <th scope="col">Price</th>
       <th scope="col">Image</th>
       <th scope="col">Status</th>
@@ -23,6 +24,7 @@
       <td>{{$acc->name}}</td>
       <td>{{$acc->description}}</td>
       <td>{{$acc->stock}}</td>
+      <td>{{$acc->discount}}</td>
       <td>{{$acc->price}}</td>
       <td><img src="{{url('/uploads/'.$acc->image)}}" alt="" width="60"></td>
       <td>{{$acc->status}} active</td>

@@ -44,6 +44,7 @@ Route::post('/register',[FrontendCustomerController::class,'register'])->name('f
 Route::post('/login',[FrontendCustomerController::class,'login'])->name('frontend.login');
 
 Route::get('/accessories/show/{p_id}',[FrontendAccessoriesController::class,'show'])->name('show.accessories');
+Route::get('/category-show/{category_id}',[FrontendHomeController::class,'showCategory'])->name('show.category');
 //cart
 Route::get('/add-to-cart/{productID}',[OrderController::class,'addCart'])->name('add.cart');
 Route::get('/view-cart',[OrderController::class,'viewcart'])->name('view.cart');

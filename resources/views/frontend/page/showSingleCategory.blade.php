@@ -7,7 +7,7 @@
   <div class="container py-5">
     <div class="row">
 
-    @foreach ($allaccessories as $acc )
+    @foreach ($allcategory as $acc )
         
      
       <div class="col-md-12 col-lg-4 mb-4 mb-lg-0">
@@ -19,13 +19,7 @@
           <div class="card-body">
             <div class="text-center mt-1">
               <h4 class="card-title">{{$acc->name}}</h4>
-              @if($acc->discount>0)
-              
-              <h5 class="text-primary mb-1 pb-3"><del>{{$acc->price}} BDT</del></h5>
-              <h5 class="text-primary mb-1 pb-3">{{($acc->price)-($acc->price/ $acc->discount)}} BDT</h5>
-              @else
               <h5 class="text-primary mb-1 pb-3">{{$acc->price}} BDT</h5>
-              @endif
             </div>
               
               <div class="d-flex flex-column mb-4 lead">

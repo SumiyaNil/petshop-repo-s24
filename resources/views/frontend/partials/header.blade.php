@@ -133,7 +133,7 @@
             <!-- <form id="search-form" class="text-center d-flex align-items-center" action="{{route('search')}}" method="">
               <input type="text" value="{{request()->search_category}}" name="search_category" class="form-control border-0 bg-transparent" placeholder="Search here" />
                -->
-            <li><a href="">{{$cat->name}}</a></li>
+            <li><a href="{{route('show.category',$cat->id)}}">{{$cat->name}}</a></li>
 
             @endforeach
 
@@ -173,6 +173,16 @@
                   </a>
                 </li>
                 <li>
+
+                <!-- wishlist -->
+                
+                <!-- <li>
+                <a href="#" class="mx-3 ">
+                      <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                    </a>
+                </li> -->
+
+                
                   <!-- foster -->
 
                   <a href="{{route('view.foster')}}" class="mx-3">Foster order

@@ -7,12 +7,12 @@
         <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
           <ul class="nav flex-column">
             
-          <li class="nav-item">
+          <!-- <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="{{route('admin.profile')}}">
                 <svg class="bi"><use xlink:href="#file-earmark"/></svg>
                 Profile
               </a>
-            </li>
+            </li> -->
           <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="{{route('dashboard')}}">
                 <svg class="bi"><use xlink:href="#file-earmark"/></svg>
@@ -44,18 +44,18 @@
                 Reports
               </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="{{route('business.settings')}}">
                 <svg class="bi"><use xlink:href="#file-earmark"/></svg>
                 Business Settings
               </a>
-            </li>
-            <li class="nav-item">
+            </li> -->
+            <!-- <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="{{route('payment.list')}}">
                 <svg class="bi"><use xlink:href="#file-earmark"/></svg>
                 Payment
               </a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="{{route('order.list')}}">
                 <svg class="bi"><use xlink:href="#file-earmark"/></svg>

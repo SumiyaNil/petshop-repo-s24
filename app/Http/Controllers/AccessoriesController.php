@@ -35,7 +35,8 @@ class AccessoriesController
         'acc_price'=>'required|max:10',
         'acc_stock'=>'required|max:10',
         'acc_image'=>'required|file|max:1024',  
-        'category_id'=>'required' 
+        'category_id'=>'required',
+        'discount'=>'nullable|numeric',
        
       ]);
 
@@ -61,7 +62,8 @@ class AccessoriesController
         'stock' =>$request->acc_stock,
         'price' =>$request->acc_price,
         'image' =>$fileName,
-        'category_id'=>$request->category_id
+        'category_id'=>$request->category_id,
+        'discount'=>$request->discount,
     ]);
     
     return redirect()->route('accessories.list');

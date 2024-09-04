@@ -40,6 +40,11 @@
                             </div>
                         @endif
                     </div>
+                    <li>
+                <a href="" class="mx-3 ">
+                      <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                    </a>
+                </li>
                 </div>
             </div>
         </section>
