@@ -320,7 +320,7 @@ input[type=password]:placeholder {
     <!-- Login Form -->
     <form action="{{route('login.form')}}" method="post">
       @csrf
-      <label id="login">Login</label>
+      <label id="login">UserEmail</label>
       <input type="text" id="login" class="fadeIn second" name="email" placeholder="login">
       <label id="password">Password</label>
       <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">

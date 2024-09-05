@@ -1,7 +1,9 @@
 @extends('frontend.master')
 @section('content')
 
-<form action="{{route('foster.store',)}}" method="post" enctype="multipart/form-data">
+<div class="form-group p-5">
+
+<form action="{{route('foster.store')}}" method="post" enctype="multipart/form-data">
     @csrf
   <div class="form-group">
     <label for="exampleInputEmail1">From</label>
@@ -43,7 +45,7 @@
   </div>
 
   <div>
-  <button type="submit" class="btn btn-primary" style="color: black;">Submit</button>
+  <button type="submit" class="btn btn-primary active">BOOK NOW</button>
    </div>
    <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
         <ul style="list-style-type: none;"> 
@@ -57,7 +59,7 @@
    </div>    
 </form>
 </div> 
-</div>
+
 
 <div class="modal fade" id="termModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -75,7 +77,7 @@
         <button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
         
       </div>
-      </form>
+ 
     </div>
   </div>
 </div>

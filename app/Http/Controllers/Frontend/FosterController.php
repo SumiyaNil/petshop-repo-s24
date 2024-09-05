@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\Breed;
 use App\Models\Foster;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 use Illuminate\Http\UploadedFile;
+
 
 class FosterController
 {
@@ -33,12 +35,22 @@ class FosterController
             notify()->error($validation->getMessageBag());
             return redirect()->back();
         }
+
+    $fdate=$request->from_date;
+    $tdate=$request->to_date;
+
+    $start = Carbon::parse(date('Y-m-d',strtotime($fdate)));
+    $end = Carbon::parse(date('Y-m-d',strtotime($tdate)));
+   
+
+    $days = (int)$start->diffInDays($end);
+
        // dd($request->all());
         Foster::create([
            'fdate'=>date('Y-m-d',strtotime($request->from_date)),
            'tdate'=>date('Y-m-d',strtotime($request->to_date)),
            'location'=>$request->location,
-           'price'=>$request->foster_price,
+           'price'=>$request->foster_price * $days,
            'instruction'=>$request->foster_instruction,
            'customer_id'=>auth('customerGuard')->user()->id,
         ]);

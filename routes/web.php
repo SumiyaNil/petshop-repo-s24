@@ -59,6 +59,7 @@ Route::group(['middleware'=>'customer_auth'],function(){
    Route::post('/placeorder',[OrderController::class,'placeOrder'])->name('place.order');
    Route::get('/profile-page',[ProfileController::class,'profilePage'])->name("profile.page");
    Route::get('/profile-order',[ProfileController::class,'profileOrder'])->name('profile.order');
+   Route::get('/profile-foster',[ProfileController::class,'profileFoster'])->name('profile.foster');
    Route::get('/view-Invoice/{order_id}',[OrderController::class,'viewInvoice'])->name('view.invoice');
    Route::get('/delete-profile-order/{orderId}',[OrderController::class,'deleteProfileOrder'])->name('delete.profile.order');
    Route::get('/foster-form',[FrontendFosterController::class,'form'])->name('frontend.foster');

@@ -19,15 +19,12 @@
         <div class="card mb-4">
           <div class="card-body text-center">
             
-            <img src="/uploads/.auth('customerGuard')->user()->image" alt="avatar"
+            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Image not found"
               class="rounded-circle img-fluid" style="width: 150px;">
             <h5 class="my-3"></h5>
             <p class="text-muted mb-1">{{auth('customerGuard')->user()->name}}</p>
             <!-- <p class="text-muted mb-4">Bay Area, San Francisco, CA</p> -->
-            <div class="d-flex justify-content-center mb-2">
-              <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary">Follow</button>
-              <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-primary ms-1">Message</button>
-            </div>
+            
           </div>
         </div>
         <div class="card mb-4 mb-lg-0">
@@ -39,6 +36,13 @@
                <p class="mb-0">Order</p>
                </a> 
               </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <i class="fas fa-globe fa-lg text-warning"></i>
+               <a href="{{route('profile.foster')}}">
+               <p class="mb-0">Foster</p>
+               </a> 
+              </li>
+
 
             </ul>
           </div>

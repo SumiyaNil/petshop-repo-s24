@@ -11,7 +11,6 @@
       <th scope="col">Payment method</th>
       <th scope="col">Payment status</th>
       <th scope="col">Total amount</th>
-      <th scope="col">Total discount</th>
       <th scope="col">Order date</th>
       <th scope="col">Status</th>
       <th scope="col">Action</th>
@@ -31,7 +30,6 @@
       <td>{{$order->payment_method}}</td>
       <td>{{$order->payment_status}}</td>
       <td>{{$order->total_amount}} .BDT</td>
-      <td>{{$order->total_discount}}</td>
       <td>{{$order->created_at}}</td>
       <td>{{$order->status}}</td>
       <td>

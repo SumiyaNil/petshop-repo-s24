@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('payment_status')->default('pending');
             $table->string('trx_id')->nullable();
             $table->double('total_amount');
-            $table->double('total_discount')->nullable();
             $table->text('note')->nullable();
             $table->timestamps();
         });
