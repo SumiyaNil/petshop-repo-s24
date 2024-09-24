@@ -44,20 +44,15 @@
             <h3>Quick Links</h3>
             <ul class="menu-list list-unstyled">
               <li class="menu-item">
-                <a href="#" class="nav-link">Home</a>
+                <a href="{{route('frontend.home')}}" class="nav-link">Home</a>
               </li>
               <li class="menu-item">
-                <a href="#" class="nav-link">About us</a>
+                <a href="{{route('frontend.accessories')}}" class="nav-link">Accessories</a>
               </li>
               <li class="menu-item">
-                <a href="#" class="nav-link">Offer </a>
+                <a href="{{route('frontend.foster')}}" class="nav-link">New Foster request </a>
               </li>
-              <li class="menu-item">
-                <a href="#" class="nav-link">Services</a>
-              </li>
-              <li class="menu-item">
-                <a href="#" class="nav-link">Conatct Us</a>
-              </li>
+
             </ul>
           </div>
         </div>
@@ -84,16 +79,8 @@
           </div>
         </div>
         <div class="col-md-3">
-          <div>
-            <h3>Our Newsletter</h3>
-            <p class="blog-paragraph fs-6">Subscribe to our newsletter to get updates about our grand offers.</p>
-            <div class="search-bar border rounded-pill border-dark-subtle px-2">
-              <form class="text-center d-flex align-items-center" action="" method="">
-                <input type="text" class="form-control border-0 bg-transparent" placeholder="Enter your email here" />
-                <iconify-icon class="send-icon" icon="tabler:location-filled"></iconify-icon>
-              </form>
-            </div>
-          </div>
+         
+          
         </div>
 
       </div>

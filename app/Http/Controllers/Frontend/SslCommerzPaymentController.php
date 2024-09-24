@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Library\SslCommerz\SslCommerzNotification;
+use App\Models\Foster;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -69,6 +70,7 @@ class SslCommerzPaymentController
         }
 
     }
+    
 
     public function success(Request $request)
     {
@@ -79,6 +81,7 @@ class SslCommerzPaymentController
 
         $sslc = new SslCommerzNotification();
         $order= Order::find($order_id);
+    
         
 
         if ($order->payment_status == 'pending') {

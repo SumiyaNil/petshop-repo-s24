@@ -24,8 +24,8 @@ class FosterController
     {
 
         $validation = Validator::make($request->all(),[
-            'from_date'=>'required|date',
-            'to_date'=>'required|date',
+            'from_date'=>'required|date|after_or_equal:'.date('Y-m-d'),
+            'to_date'=>'required|date|after_or_equal:'.date('Y-m-d'),
             'location'=>'required',
             'foster_price'=>'required',
             'foster_instruction'=>'required',
@@ -53,10 +53,14 @@ class FosterController
            'price'=>$request->foster_price * $days,
            'instruction'=>$request->foster_instruction,
            'customer_id'=>auth('customerGuard')->user()->id,
+           
         ]);
-    
         
-        return redirect()->route('view.foster');
+            return redirect()->route('view.foster');
+        
+
+        
+       
     }
     public function viewfoster()
     {

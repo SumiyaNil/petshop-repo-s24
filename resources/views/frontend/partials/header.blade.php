@@ -27,7 +27,7 @@
         </div>
         @guest('customerGuard')
         <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
-        <ul style="list-style-type: none;"> 
+        <ul style="text-decoration: none"> 
         <li>
            <!-- anchor trigger modal for registration-->
            <a href="#"   data-toggle="modal" data-target="#regModal">
@@ -47,14 +47,19 @@
         <!-- <a href="" class="mx-3">
           <img src="/uploads/.auth('customerGuard')->user()->image" alt="">
         </a> -->
+        <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
+        <ul style="text-decoration: none"> 
         <li>
           <a type="" class="mx-3" href="{{route('profile.page')}}">
+          <!-- <img src="/uploads/.auth('customerGuard')->user()->image" alt="No image"> -->
             {{auth('customerGuard')->user()->name}}
           </a>
         </li>
         <li>
           <a href="{{route('frontend.logout')}}" class="mx-3">Logout</a>
         </li>
+        </ul>
+        </div>
 
         @endauth
       </div>
@@ -311,7 +316,7 @@ if(session()->has('basket')){
           @endforeach
           </select>
         </div>
-        <!-- image -->
+        <!-- image  -->
           <!-- <div>
             <label for="">Enter your image</label>
             <input required type="file" name="customer_image" placeholder="Enter your customer image" class="form-control">
@@ -320,8 +325,8 @@ if(session()->has('basket')){
  
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Register now</button>
+        <button type="submit" class="btn btn-secondary active" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary active">Register now</button>
       </div>
       </form>
     </div>
@@ -362,8 +367,8 @@ if(session()->has('basket')){
  
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">login</button>
+        <button type="submit" class="btn btn-secondary active" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary active" >login</button>
       </div>
       </form>
     </div>

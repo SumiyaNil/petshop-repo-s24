@@ -20,13 +20,12 @@
                             <p><span class="text-decoration"> {{$singleAccessories->stock}} stock available</span></p>
                            
                         </div>
-                        <p class="lead">description here</p>
-                        <div class="d-flex">
-                            <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 300px">
-                        </div>
+                        <p class="lead">Description </p>
+                        <p class="lead">{{$singleAccessories->description}}</p>
+                        
                         @if($singleAccessories->stock>0)
                             <div class="d-flex flex-row">
-                             <a href="{{route('add.cart',$singleAccessories->id)}}" type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary" style="color:black;">
+                             <a href="{{route('add.cart',$singleAccessories->id)}}" type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary active" style="color:black;">
                               Add to cart
                              </a>
                           
@@ -39,12 +38,15 @@
                           
                             </div>
                         @endif
-                    </div>
+                    </div class="d-flex flex-row">
+                    <ul style="text-decoration: none;">
+
                     <li>
-                <a href="" class="mx-3 ">
+                <a href="" type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary active">
                       <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
                     </a>
                 </li>
+                    </ul>
                 </div>
             </div>
         </section>

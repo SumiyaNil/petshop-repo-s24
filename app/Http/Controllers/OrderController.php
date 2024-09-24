@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Frontend\SslCommerzPaymentController;
 use App\Mail\OrderEmail;
 use App\Models\Accessories;
+use App\Models\Foster;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use Illuminate\Http\Request;
@@ -58,17 +59,40 @@ class OrderController
     //report for backend
     public function report()
     {
-       
-       if(request()->has('from_date') && request()->has('to_date'))
-       {
-      $allorder = Order::whereBetween('created_at',[request()->from_date,request()->to_date])->get();
-        return view('backend.report',compact('allorder'));
-       }
-       
-       $allorder=Order::all();
-       return view('backend.report',compact('allorder'));
-    }
 
+       return view('backend.report');
+    }
+    public function orderReport()
+     {
+        if(request()->has('from_date') && request()->has('to_date'))
+        {
+         $allorder = Order::whereBetween('created_at',[request()->from_date,request()->to_date])
+                         ->get();
+         // $allorder=Order::whereDate('created_at', date('y-m-d',strtotime(request()->from_date)))->
+         //                  whereDate('created_at',date('y-m-d',strtotime(request()->to_date)))->get();
+         
+         
+         return view('backend.page.orderReport',compact('allorder'));
+        }
+       
+        
+        $allorder=Order::all();
+        return view('backend.page.orderReport',compact('allorder'));
+     }
+     public function fosterReport()
+     {
+        if(request()->has('from_date') && request()->has('to_date'))
+        {
+         $allfoster = Foster::whereBetween('created_at',[request()->from_date,request()->to_date])
+                         ->get();
+         
+         return view('backend.page.fosterReport',compact('allfoster'));
+        }
+       
+        
+        $allfoster=Foster::all();
+        return view('backend.page.fosterReport',compact('allfoster'));
+     }
 
     // public function viewOrder()
     // {

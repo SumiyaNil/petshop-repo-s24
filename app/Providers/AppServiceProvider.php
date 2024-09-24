@@ -7,7 +7,7 @@ use App\Models\Foster;
 use App\Models\Location;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
-
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,13 +26,18 @@ class AppServiceProvider extends ServiceProvider
     {
         
      Paginator::useBootstrap();
-     $allcategories=Category::all();
+     if(Schema::hasTable('categories'))
+     {
+        $allcategories=Category::all();
         view()->share('categories',$allcategories);
         $location=Location::all();
         view()->share('location',$location);
+        
         $foster=Foster::all();
         view()->share('foster',$foster);
         $fostercount=Foster::find('$id');
         view()->share('fostercount',$fostercount);
+     }
+    
     }
 }

@@ -28,7 +28,7 @@ class AccessoriesController
   }
   public function store(Request $request)
   {
-
+      
     $validation = Validator::make($request->all(),[ 
       'acc_title'=>'required|max:50',
         'acc_description'=>'required|max:150',

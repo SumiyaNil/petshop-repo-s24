@@ -113,6 +113,8 @@ Route::group(['prefix'=>'admin'],function(){
 
 
        Route::get('/report',[OrderController::class,'report'])->name('report');
+       Route::get('/order-report',[OrderController::class,'orderReport'])->name('check.order.report');
+       Route::get('/foster-report',[OrderController::class,'fosterReport'])->name('check.foster.report');
        
 
        Route::get('/service',[ServiceController::class,'service']);
