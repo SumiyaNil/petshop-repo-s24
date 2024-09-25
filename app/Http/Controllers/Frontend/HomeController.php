@@ -35,4 +35,9 @@ class HomeController
         
         return view('frontend.page.showSingleCategory',compact('allcategory'));
     }
+    public function changeLang($lang)
+    {
+     session()->put('locale',$lang);
+     return redirect()->back();
+    }
 }

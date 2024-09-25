@@ -17,9 +17,9 @@
   </thead>
   <tbody>
   
-    @foreach($allfoster as $foster)
+    @foreach($allfoster as $key=>$foster)
     <tr>
-      <th scope="row">{{$foster->id}}</th>
+      <th scope="row">{{$key+1}}</th>
       
       <td>{{$foster->fdate}}</td>
       <td>{{$foster->tdate}}</td>

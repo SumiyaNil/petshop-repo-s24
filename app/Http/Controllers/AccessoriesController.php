@@ -64,6 +64,7 @@ class AccessoriesController
         'image' =>$fileName,
         'category_id'=>$request->category_id,
         'discount'=>$request->discount,
+        
     ]);
     
     return redirect()->route('accessories.list');

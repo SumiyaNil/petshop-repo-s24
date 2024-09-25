@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Frontend\SslCommerzPaymentController;
 use App\Mail\OrderEmail;
 use App\Models\Accessories;
+use App\Models\Customer;
 use App\Models\Foster;
 use App\Models\Order;
 use App\Models\OrderDetail;
@@ -81,15 +82,17 @@ class OrderController
      }
      public function fosterReport()
      {
+       
         if(request()->has('from_date') && request()->has('to_date'))
         {
          $allfoster = Foster::whereBetween('created_at',[request()->from_date,request()->to_date])
                          ->get();
          
+                         //dd($allfoster);
+         
          return view('backend.page.fosterReport',compact('allfoster'));
         }
        
-        
         $allfoster=Foster::all();
         return view('backend.page.fosterReport',compact('allfoster'));
      }
@@ -107,7 +110,7 @@ class OrderController
         {
         $myCart=session()->get('basket');
 
-
+        
         if(empty($myCart))
         {
         $cart[$accessories->id]=[
@@ -115,9 +118,9 @@ class OrderController
         'acc_title' => $accessories->name,
         'acc_description' =>$accessories->description,
         'acc_stock' =>$accessories->stock,
-        'acc_price' =>$accessories->price,
+        'acc_price' =>$accessories->price-($accessories->price/$accessories->discount),
         'quantity'=>1,
-        'subtotal'=>1* $accessories->price,
+        'subtotal'=>1* ($accessories->price-($accessories->price/$accessories->discount)),
         'image' =>$accessories->image,
         
 

@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
     {
         
      Paginator::useBootstrap();
-     if(Schema::hasTable('categories'))
+     if(Schema::hasTable('categories','customers','fosters'))
      {
         $allcategories=Category::all();
         view()->share('categories',$allcategories);
@@ -38,6 +38,7 @@ class AppServiceProvider extends ServiceProvider
         $fostercount=Foster::find('$id');
         view()->share('fostercount',$fostercount);
      }
+     
     
     }
 }

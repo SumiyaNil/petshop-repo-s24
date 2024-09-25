@@ -19,9 +19,6 @@ return new class extends Migration
             $table->string('location');
             $table->double('price',2,10);
             $table->string('instruction');
-            
-            
-            
             $table->timestamps();
         });
     }

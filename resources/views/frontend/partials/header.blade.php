@@ -64,6 +64,14 @@
         @endauth
       </div>
     </div>
+     <!-- language translation -->
+     <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
+       <select onchange="location=this.options[this.selectedIndex].value;"name="" id="">
+        <option @if(session()->get('locale')=='en') selected @endif value="{{route('change.lang','en')}}">English</option>
+        <option @if(session()->get('locale')=='jp') selected @endif value="{{route('change.lang','jp')}}">Japaness</option>
+        <option @if(session()->get('locale')=='bn') selected @endif value="{{route('change.lang','bn')}}">Bangla</option>
+       </select>
+        </div>
 
     <div class="container-fluid">
       <hr class="m-0">
@@ -127,7 +135,7 @@
         
           <button type="button" class="btn btn-shop-category dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-            Shop By Category <span class="caret"></span>
+            {{__('Shop By Category')}} <span class="caret"></span>
 
           </button>
 

@@ -10,8 +10,5 @@ class Customer extends Authenticatable
     use HasFactory;
     protected $guarded=[]; 
 
-    public function foster()
-    {
-        $this->hasMany(Foster::class);
-    }
+   
 }

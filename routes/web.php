@@ -35,8 +35,9 @@ use Illuminate\Support\Facades\Route;
 
 //sslpayment end
 
-
+Route::group(['middleware'=>'changeLangMiddleware'],function(){
 Route::get('/',[FrontendHomeController::class, 'home'])->name('frontend.home');
+Route::get('/change-lang/{lang_id}',[FrontendHomeController::class,'changeLang'])->name('change.lang');
 Route::get('/product',[FrontendProductController::class,'allproduct'])->name('frontend.product');
 Route::get('/allaccessories',[FrontendAccessoriesController::class,'accessories'])->name('frontend.accessories');
 
@@ -73,7 +74,7 @@ Route::group(['middleware'=>'customer_auth'],function(){
    
 });
 
-
+});
 
 Route::group(['prefix'=>'admin'],function(){
 

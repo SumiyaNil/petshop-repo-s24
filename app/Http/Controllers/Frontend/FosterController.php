@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Models\Breed;
+use App\Models\Customer;
 use App\Models\Foster;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ class FosterController
 {
     public function form()
     {
-        $allfoster=Foster::with('breed')->get();
+        $allfoster=Foster::with('breed','customer')->get();
         $allbreed=Breed::all();
         return view('frontend.page.fosterform',compact('allfoster','allbreed'));
     }
@@ -45,7 +46,7 @@ class FosterController
 
     $days = (int)$start->diffInDays($end);
 
-       // dd($request->all());
+        //dd($request->all());
         Foster::create([
            'fdate'=>date('Y-m-d',strtotime($request->from_date)),
            'tdate'=>date('Y-m-d',strtotime($request->to_date)),
@@ -53,6 +54,7 @@ class FosterController
            'price'=>$request->foster_price * $days,
            'instruction'=>$request->foster_instruction,
            'customer_id'=>auth('customerGuard')->user()->id,
+           
            
         ]);
         

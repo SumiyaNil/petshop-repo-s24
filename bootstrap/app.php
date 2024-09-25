@@ -14,7 +14,10 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
             'customer_auth' => \App\Http\Middleware\CustomerAuth::class,
+            'changeLangMiddleware' => \App\Http\Middleware\ChangeLangMiddleWare::class,
         ]);
+        
+           
         $middleware->validateCsrfTokens(except: [
             '/success',
             '/cancel',

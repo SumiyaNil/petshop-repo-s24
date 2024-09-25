@@ -18,6 +18,12 @@
                 <svg class="bi"><use xlink:href="#file-earmark"/></svg>
                 Dashboard
               </a>
+              <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="{{route('category.list')}}">
+                <svg class="bi"><use xlink:href="#puzzle"/></svg>
+                Category
+              </a>
+            </li>
             </li>
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="{{route('accessories.list')}}">
@@ -38,12 +44,7 @@
                 Customers
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="{{route('report')}}">
-                <svg class="bi"><use xlink:href="#graph-up"/></svg>
-                Reports
-              </a>
-            </li>
+            
             <!-- <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="{{route('business.settings')}}">
                 <svg class="bi"><use xlink:href="#file-earmark"/></svg>
@@ -62,12 +63,7 @@
                 Order
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="{{route('category.list')}}">
-                <svg class="bi"><use xlink:href="#puzzle"/></svg>
-                Category
-              </a>
-            </li>
+            
             <!-- <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="">
                 <svg class="bi"><use xlink:href="#puzzle"/></svg>
@@ -80,8 +76,17 @@
                 Location
               </a>
             </li>
-
-          </ul>
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="{{route('report')}}">
+                <svg class="bi"><use xlink:href="#graph-up"/></svg>
+                Reports
+                <!-- <select>
+             <option value="{{route('check.order.report')}}">Order Report</option>
+             <option value="{{route('check.foster.report')}}">Foster Report</option>
+              </select> -->
+              </a>
+            </li>
+          
 
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="{{route('logout')}}">

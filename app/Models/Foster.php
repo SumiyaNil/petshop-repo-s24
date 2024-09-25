@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -9,7 +10,7 @@ class Foster extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    public $timestamps = false;
+    
     public function locationRel()
     {
         return $this->belongsTo(Location::class,'location');
@@ -18,5 +19,9 @@ class Foster extends Model
     {
         return $this->hasMany(Breed::class);
     }
-    
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
+   
 }

@@ -1,7 +1,7 @@
 @extends('backend.master')
 @section('content')
 <h1>this is report page for Foster</h1>
-<form class="form-inline my-2 my-lg-0" id="search-form" action="{{route('report')}}">
+<form class="form-inline my-2 my-lg-0" id="search-form" action="{{route('check.foster.report')}}">
 @csrf
 <div class="form-group">
     <label for="exampleInputEmail1">From</label>
@@ -40,7 +40,7 @@
       <th scope="col">To </th>
       <th scope="col">Customer Name</th>
       <th scope="col">Price</th>
-      
+     
 
     </tr>
   </thead>
@@ -52,9 +52,9 @@
       <th scope="row">{{$foster->id}}</th>
       <th scope="row">{{$foster->fdate}}</th>
       <th scope="row">{{$foster->tdate}}</th>
-      <th scope="row">{{auth('customerGuard')->user()->name}}</th>
+      <th scope="row">{{$foster->customer->name}}</th>
       <th scope="row">{{$foster->price}}</th>
-     
+      
     </tr>
     @endforeach
   </tbody>

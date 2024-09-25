@@ -43,17 +43,7 @@
     <label for="image">Instruction</label>
     <input name="foster_instruction" type="text" class="form-control" id="image" placeholder="enter your instruction for your pet">
   </div>
-  <!-- <div class="d-block my-3">
-              <div class="custom-control custom-radio">
-                <input id="credit" name="paymentMethod" value="cod" type="radio" class="custom-control-input" checked required>
-                <label class="custom-control-label" for="credit">Cash on Delivery (COD)</label>
-              </div>
-              
-              <div class="custom-control custom-radio">
-                <input id="paypal" name="paymentMethod" value="online" type="radio" class="custom-control-input" required>
-                <label class="custom-control-label" for="paypal">Online Payment</label>
-              </div>
-            </div> -->
+  
   <div>
   <button type="submit" class="btn btn-primary active">BOOK NOW</button>
    </div>

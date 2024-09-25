@@ -1,7 +1,7 @@
 @extends('backend.master')
 @section('content')
 <h1>This is a Order report page</h1>
-<form class="form-inline my-2 my-lg-0" id="search-form" action="{{route('report')}}">
+<form class="form-inline my-2 my-lg-0" id="search-form" action="{{route('check.order.report')}}">
 @csrf
 <div class="form-group">
     <label for="exampleInputEmail1">From</label>
