@@ -49,10 +49,13 @@ class OrderController
         'receiver_address'=>$request->receiver_address,
         'payment_method'=>$request->payment_method,
         'total_amount'=>$request->total_amount,
+        'status'=>$request->status,
        ]);
        notify()->success("order updated successfully");
        return redirect()->route('order.list');
     }
+
+
 
 
 
@@ -63,31 +66,52 @@ class OrderController
 
        return view('backend.report');
     }
+
+
     public function orderReport()
      {
+
+        if(request()->type=='month')
+        {
+
+            $allorder=Order::whereMonth('created_at', request()->month)->get();
+
+            $title="Order Report by Month";
+
+
+            return view('backend.page.orderReport',compact('allorder','title'));
+            
+
+        }
+        
         if(request()->has('from_date') && request()->has('to_date'))
         {
-         $allorder = Order::whereBetween('created_at',[request()->from_date,request()->to_date])
-                         ->get();
-         // $allorder=Order::whereDate('created_at', date('y-m-d',strtotime(request()->from_date)))->
-         //                  whereDate('created_at',date('y-m-d',strtotime(request()->to_date)))->get();
+        //  $allorder = Order::whereBetween('created_at',[request()->from_date,request()->to_date])
+                        //  ->get();
+          $allorder=Order::whereDate('created_at', date('y-m-d',strtotime(request()->from_date)))->
+                           whereDate('created_at',date('y-m-d',strtotime(request()->to_date)))->get();
          
+                           $title="Order Report by Date";
+
          
-         return view('backend.page.orderReport',compact('allorder'));
+         return view('backend.page.orderReport',compact('allorder','title'));
         }
        
-        
+        $title="Order Report - please select date or month";
         $allorder=Order::all();
-        return view('backend.page.orderReport',compact('allorder'));
+        return view('backend.page.orderReport',compact('allorder','title'));
      }
+
+     
      public function fosterReport()
      {
        
         if(request()->has('from_date') && request()->has('to_date'))
         {
-         $allfoster = Foster::whereBetween('created_at',[request()->from_date,request()->to_date])
-                         ->get();
-         
+         $allfoster = Foster::whereBetween('created_at',[request()->from_date,request()->to_date])->get();
+         //$allfoster=Foster::whereDate('created_at', date('y-m-d',strtotime(request()->from_date)))->
+                       //  whereDate('created_at',date('y-m-d',strtotime(request()->to_date)))->get();
+       
                          //dd($allfoster);
          
          return view('backend.page.fosterReport',compact('allfoster'));
@@ -110,18 +134,19 @@ class OrderController
         {
         $myCart=session()->get('basket');
 
-        
         if(empty($myCart))
         {
+         
         $cart[$accessories->id]=[
         'acc_id'=>$accessories->id,
         'acc_title' => $accessories->name,
         'acc_description' =>$accessories->description,
         'acc_stock' =>$accessories->stock,
-        'acc_price' =>$accessories->price-($accessories->price/$accessories->discount),
+        'acc_price' =>$accessories->price-($accessories->price * ($accessories->discount/100)),
         'quantity'=>1,
-        'subtotal'=>1* ($accessories->price-($accessories->price/$accessories->discount)),
+        'subtotal'=>1 * ($accessories->price-($accessories->price*($accessories->discount/100))),
         'image' =>$accessories->image,
+        'discount'=>$accessories->discount,
         
 
         ];
@@ -154,10 +179,11 @@ class OrderController
                     'acc_title' => $accessories->name,
                     'acc_description' =>$accessories->description,
                     'acc_stock' =>$accessories->stock,
-                    'acc_price' =>$accessories->price,
+                    'acc_price' =>$accessories->price-($accessories->price * ($accessories->discount/100)),
                     'quantity'=>1,
-                    'subtotal'=>1* $accessories->price,
+                    'subtotal'=>1* ($accessories->price-($accessories->price * ($accessories->discount/100))),
                     'image' =>$accessories->image,
+                    'discount'=>$accessories->discount,
                 ];
                 session()->put('basket',$myCart);
                 notify()->success("Product Added to Cart");
@@ -247,10 +273,14 @@ class OrderController
          
           foreach($cart as $singleData)
           {
+
+            $accessory=Accessories::find($singleData['acc_id']);
+
             OrderDetail::create([
                'order_id'=>$order->id,
                'accessories_id'=>$singleData['acc_id'],
-               'unit_price'=>$singleData['acc_price'],
+               'unit_price'=>$accessory->price,
+              'discount'=>$accessory->discount,
                'quantity'=>$singleData['quantity'],
                'subtotal'=>$singleData['subtotal'],
                
@@ -276,7 +306,7 @@ class OrderController
         if($request->paymentMethod =='cod')
         {
             $order->update([
-                'payment_status'=>'success',
+                'payment_status'=>'processing',
             ]);
             notify()->success('Order place successfully');
             session()->forget('basket');
@@ -299,6 +329,7 @@ class OrderController
         $order=Order::with('orderDetails')->find($order_id);
         return view('frontend.page.invoice',compact('order'));
        }
+
        public function deleteProfileOrder($orderID)
        {
         $order= Order::find($orderID);

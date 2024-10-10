@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Throwable;
 
 class CategoryController
 {
@@ -23,7 +24,7 @@ class CategoryController
     {
         $validation=Validator::make($request->all(),
         [
-            'cat_name'=>'required|min:2',
+            'cat_name'=>'required',
         ]);
         
       if($validation->fails())
@@ -41,5 +42,38 @@ class CategoryController
 
     return redirect()->back();
     }
+    public function view($id)
+    {
+     $allCategory = Category::find($id);
+     return view('backend.page.categoryview',compact('allCategory'));
+    }
+    public function delete($id)
+    {
+        try{
+            $allCategory=Category::find($id);
+            $allCategory->delete();
     
+            notify()->success('Category deleted.');
+            return redirect()->back();
+        }catch(Throwable $ex)
+        {
+            notify()->error('Category has product.');
+            return redirect()->back();
+        }
+    }
+    public function edit($id)
+    {
+        $allCategory = Category::find($id);
+        return view('backend.page.editCategory',compact('allCategory'));
+    }
+    public function update(Request $request, $id)
+    {
+        $allCategory= Category::find($id);
+        $allCategory->update([
+            'name'=>$request->cat_name,
+            'description'=>$request->cat_description,
+        ]);
+        notify()->success('Category updated successfully');
+        return redirect()->route('category.list');
+        }
 }

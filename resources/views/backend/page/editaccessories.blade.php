@@ -7,7 +7,7 @@
     @csrf
   <div class="form-group">
     <label for="exampleInputEmail1">Accessories name</label>
-    <input name="acc_title" type="name" required class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter accessories">
+    <input name="acc_title" value="{{$acc->name}}"  type="name" required class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter accessories">
     
   </div>
   <div class="form-group">
@@ -16,11 +16,11 @@
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Stock</label>
-    <input name="acc_stock" type="text" required class="form-control" id="exampleInputPassword1" placeholder="stock details">
+    <input name="acc_stock" value="{{$acc->stock}}" type="text" required class="form-control" id="exampleInputPassword1" placeholder="stock details">
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Accessories price</label>
-    <input name="acc_price" type="text" required class="form-control" id="exampleInputPassword1" placeholder="price">
+    <input name="acc_price" value="{{$acc->price}}"  type="text" required class="form-control" id="exampleInputPassword1" placeholder="price">
   </div>
   <div class="form-group">
     <label for="image">Accessories Image</label>

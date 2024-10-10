@@ -17,7 +17,7 @@ class Foster extends Model
     }
     public function breed()
     {
-        return $this->hasMany(Breed::class);
+        return $this->belongsTo(Breed::class,'name');
     }
     public function customer()
     {

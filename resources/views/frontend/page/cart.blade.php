@@ -28,9 +28,8 @@
               </div>
               <div class="col-md-3 col-lg-3 col-xl-3">
                 <p class="lead fw-normal mb-2"> {{ $cartData['acc_title'] }} </p>
-                <p><span class="text-muted">Price: </span> {{$cartData['acc_price']}}</p>
-              </div>
-              <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                <p><span class="text-muted">Price: </span> {{$cartData['subtotal']}}. BDT</p>
+                <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
                 <button data-mdb-button-init data-mdb-ripple-init class="btn btn-link px-2"
                   onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
                   <i class="fas fa-minus"></i>
@@ -45,14 +44,17 @@
               <form action="{{route('update.cart',$cartData['acc_id'])}}" method="post">  
                 @csrf
                 <input id="form1" min="0" name="quantity" value="{{$cartData['quantity']}}" type="number"
-                  class="btn" />
+                  class="btn active" />
 
                 <button class="btn btn-info active" type="submit"> Update</button>
                   </form>
-              <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                <h5 class="mb-0"> {{$cartData['subtotal'] }}  </h5>
               </div>
+             
+              <!-- <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                <h5 class="mb-0"> {{$cartData['subtotal'] }}  </h5>
+              </div> -->
               <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+              
                      <a href="{{route('cart.item.delete',$cartData['acc_id'])}}" class="btn btn-danger text-danger">Delete</a>
               </div>
             </div>

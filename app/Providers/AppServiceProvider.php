@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Accessories;
 use App\Models\Category;
 use App\Models\Foster;
 use App\Models\Location;
@@ -26,7 +27,8 @@ class AppServiceProvider extends ServiceProvider
     {
         
      Paginator::useBootstrap();
-     if(Schema::hasTable('categories','customers','fosters'))
+     $allcategories = [];
+     if(Schema::hasTable('categories','customers','fosters','accessories'))
      {
         $allcategories=Category::all();
         view()->share('categories',$allcategories);
@@ -37,6 +39,7 @@ class AppServiceProvider extends ServiceProvider
         view()->share('foster',$foster);
         $fostercount=Foster::find('$id');
         view()->share('fostercount',$fostercount);
+      
      }
      
     

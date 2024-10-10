@@ -30,8 +30,8 @@ class HomeController
     public function showCategory($id)
     {
         
-        $category=Accessories::find($id);
-        $allcategory=Accessories::where('category_id',$category->id)->get();
+       // $category=Accessories::find($id);
+        $allcategory=Accessories::where('category_id',$id)->get();
         
         return view('frontend.page.showSingleCategory',compact('allcategory'));
     }

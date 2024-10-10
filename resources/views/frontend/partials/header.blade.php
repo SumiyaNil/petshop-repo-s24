@@ -66,11 +66,11 @@
     </div>
      <!-- language translation -->
      <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
-       <select onchange="location=this.options[this.selectedIndex].value;"name="" id="">
+       <!-- <select onchange="location=this.options[this.selectedIndex].value;"name="" id="">
         <option @if(session()->get('locale')=='en') selected @endif value="{{route('change.lang','en')}}">English</option>
         <option @if(session()->get('locale')=='jp') selected @endif value="{{route('change.lang','jp')}}">Japaness</option>
         <option @if(session()->get('locale')=='bn') selected @endif value="{{route('change.lang','bn')}}">Bangla</option>
-       </select>
+       </select> -->
         </div>
 
     <div class="container-fluid">
@@ -160,7 +160,7 @@
 
             <ul class="navbar-nav menu-list list-unstyled d-flex gap-md-3 mb-0">
               <li class="nav-item">
-                <a href="{{route('frontend.home')}}" class="nav-link active">Home</a>
+                <a href="{{route('frontend.home')}}" class="nav-link active">{{__('Home')}}</a>
               </li>
               <li class="nav-item">
                 <a href="{{route('frontend.accessories')}}" class="nav-link" >Accessories</a>

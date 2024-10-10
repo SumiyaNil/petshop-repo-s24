@@ -7,11 +7,11 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Customer Name</th>
-      <th scope="col">Number</th>
-      <th scope="col">location</th>
-      <th scope="col">Image</th>
+      <th scope="col">Mobile</th>
+      <th scope="col">Email</th>
+      
       <th scope="col">Status</th>
-      <th scope="col">Action</th>
+      <!-- <th scope="col">Action</th> -->
     </tr>
   </thead>
   <tbody>
@@ -20,14 +20,14 @@
       <th scope="row">{{$cus->id}}</th>
       <td>{{$cus->name}}</td>
       <td>{{$cus->number}}</td>
-      <td>{{$cus->location}}</td>
-      <td><img src="{{url('/uploads/'.$cus->image)}}" alt="NO IMAGE" width="60"></td>
+      <td>{{$cus->email}}</td>
+      <!-- <td><img src="{{url('/uploads/'.$cus->image)}}" alt="NO IMAGE" width="60"></td> -->
       <td>{{$cus->status}}</td>
-      <td>
+      <!-- <td>
         <a class="btn btn-success" href="">View</a>
         <a class="btn btn-info" href="">Edit</a>
         <a class="btn btn-danger" href="">Delete</a>
-      </td>
+      </td> -->
     </tr>
     @endforeach
   </tbody>

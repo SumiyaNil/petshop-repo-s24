@@ -64,12 +64,12 @@
               </a>
             </li>
             
-            <!-- <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="">
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="{{route('view.foster.list')}}">
                 <svg class="bi"><use xlink:href="#puzzle"/></svg>
                 Foster-care
               </a>
-            </li> -->
+            </li>
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="{{route('location.list')}}">
                 <svg class="bi"><use xlink:href="#puzzle"/></svg>

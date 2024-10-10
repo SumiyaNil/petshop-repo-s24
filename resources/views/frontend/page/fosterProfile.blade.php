@@ -11,8 +11,8 @@
       <th scope="col">Location</th>
       <th scope="col">Charge</th>
     
-      <th scope="col">Status</th>
-      <th scope="col">Action</th>
+      <th scope="col">Payment Status</th>
+      
     </tr>
   </thead>
   <tbody>
@@ -26,15 +26,9 @@
       <td>{{$foster->locationRel->location}}</td>
       <td>{{$foster->price}}</td>
       
-      <td>{{$foster->status}} pending</td>
-    @if($foster->status=='pending')
-     {
-      <td>
-        <a class="btn btn-danger" href="{{route('accept.foster',$foster->id)}}">Cancel</a>
-        
-      </td>
-     }
-     @endif
+      <td>{{$foster->payment_status}}</td>
+   
+    
     </tr>
     @endforeach
   </tbody>

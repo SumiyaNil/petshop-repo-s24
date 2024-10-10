@@ -66,9 +66,9 @@
                     Add to cart
                   </a>
                   @endif
-                  <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-danger active">
+                  <!-- <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-danger active">
                     Buy now
-                  </button>
+                  </button> -->
             </div>
 
         </div>

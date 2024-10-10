@@ -134,10 +134,17 @@ Route::group(['prefix'=>'admin'],function(){
        Route::get('/category',[CategoryController::class,'list'])->name('category.list');
        Route::get('/categoryform',[CategoryController::class,'form'])->name('category.form');
        Route::post('/categorystore',[CategoryController::class,'store'])->name('category.store');
+       //category view,delete,update
+       Route::get('/category-view/{category_id}',[CategoryController::class,'view'])->name('category.view');
+       Route::get('/category-delete/{category_id}',[CategoryController::class,'delete'])->name('category.delete');
+       Route::get('/category-edit/{category_id}',[CategoryController::class,'edit'])->name('category.edit');
+       Route::post('/category-update/{category_id}',[CategoryController::class,'update'])->name('category.update');
+
        //location
        Route::get('/location-list',[LocationController::class,'list'])->name('location.list');
        Route::get('/location-form',[LocationController::class,'form'])->name('location.form');
        Route::post('/location-store',[LocationController::class,'store'])->name('location.store');
+      //  Route::get('/location-view/{location_id}',[LocationController::class,'view'])->name('location.view');
        //breed
        Route::get('/breedlist',[BreedController::class,'list'])->name('breed.list');
        Route::get('/breedform',[BreedController::class,'form'])->name('breed.form');
@@ -148,7 +155,14 @@ Route::group(['prefix'=>'admin'],function(){
        Route::get('/breededit/{breedID}',[BreedController::class,'editBreed'])->name('edit.breed');
        Route::get('/breed-delete/{breedid}',[BreedController::class,'deleteBreed'])->name('delete.breed');
        Route::post('/breed-update/update/{bID}',[BreedController::class,'updateBreed'])->name('update.breed');
+       
+       //foster 
+      Route::get('/foster',[FrontendFosterController::class,'fosterViewListBackend'])->name('view.foster.list');
+      
 
+
+
+       //animal 
 
     });
 

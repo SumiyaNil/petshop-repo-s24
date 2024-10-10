@@ -41,7 +41,7 @@ class BreedController
     public function editBreed($id)
     {
       $breed=Breed::find($id);
-      return view('backend.breadform',compact('breed'));
+      return view('backend.page.editbreed',compact('breed'));
       
     }
     public function updateBreed(Request $request,$id)

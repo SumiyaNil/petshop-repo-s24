@@ -15,13 +15,17 @@
                     
                         <h1 class="display-5 fw-bolder">{{$singleAccessories->name}}</h1>
                         <div class="fs-5 mb-5">
-                            <span class="text-decoration">{{$singleAccessories->price}} .BDT</span>
-
+                            @if($singleAccessories->discount>0)
+                             <p> <span class="text-decoration"><del>{{$singleAccessories->price}} .BDT</del>   {{$singleAccessories->price - ($singleAccessories->price/$singleAccessories->discount)}} .BDT</span></p>
+                             @else
+                             <p> <span class="text-decoration">  {{$singleAccessories->price - ($singleAccessories->price/$singleAccessories->discount)}} .BDT</span></p>
+                             @endif
                             <p><span class="text-decoration"> {{$singleAccessories->stock}} stock available</span></p>
                            
                         </div>
                         <p class="lead">Description </p>
                         <p class="lead">{{$singleAccessories->description}}</p>
+                        
                         
                         @if($singleAccessories->stock>0)
                             <div class="d-flex flex-row">
@@ -42,9 +46,9 @@
                     <ul style="text-decoration: none;">
 
                     <li>
-                <a href="" type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary active">
+                <!-- <a href="" type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary active">
                       <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                    </a>
+                    </a> -->
                 </li>
                     </ul>
                 </div>

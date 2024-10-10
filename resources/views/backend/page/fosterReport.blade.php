@@ -53,7 +53,7 @@
       <th scope="row">{{$foster->fdate}}</th>
       <th scope="row">{{$foster->tdate}}</th>
       <th scope="row">{{$foster->customer->name}}</th>
-      <th scope="row">{{$foster->price}}</th>
+      <th scope="row">{{$foster->price}}.BDT</th>
       
     </tr>
     @endforeach

@@ -30,6 +30,7 @@ class FosterController
             'location'=>'required',
             'foster_price'=>'required',
             'foster_instruction'=>'required',
+            'payment_method'=>'required',
         ]);
         if($validation->fails())
         {
@@ -45,23 +46,40 @@ class FosterController
    
 
     $days = (int)$start->diffInDays($end);
-
-        //dd($request->all());
-        Foster::create([
+ 
+        
+       $foster= Foster::create([
            'fdate'=>date('Y-m-d',strtotime($request->from_date)),
            'tdate'=>date('Y-m-d',strtotime($request->to_date)),
            'location'=>$request->location,
            'price'=>$request->foster_price * $days,
            'instruction'=>$request->foster_instruction,
            'customer_id'=>auth('customerGuard')->user()->id,
+           'payment_method'=>$request->payment_method,
+        //    'breed_id'=>$request->breed_name,
+            
            
            
         ]);
         
+        if($request->payment_method != 'cod')
+        {
+            $payment=new SslCommerzPaymentController();
+
+        $payment->fosterPay($foster);
+            
+        }
+        if($request->payment_method =='cod')
+        {
+            $foster->update([
+                'payment_status'=>'processing',
+            ]);
+        }
+
             return redirect()->route('view.foster');
         
+         
 
-        
        
     }
     public function viewfoster()
@@ -84,5 +102,20 @@ class FosterController
         ]);
         notify()->success('Your request cancelled');
         return redirect()->back();
+    }
+
+
+
+
+
+    //for backend
+    public function fosterViewListBackend()
+    {
+        $fosters = Foster::all();
+        $breed = Breed::all();
+    
+
+        
+        return view('backend.page.fosterview',compact('fosters','breed'));
     }
 }

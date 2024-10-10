@@ -11,20 +11,26 @@
                     <div class="col-md-6">
                         <img class="card-img-top mb-5 mb-md-0" src="{{url('/uploads/'.$acc->image)}}" alt="product image" style="width: 300px;"></div>
                     <div class="col-md-6">
-                        <div class="small mb-1">SKU: BST-498</div>
+                       
                         <h1 class="display-5 fw-bolder">{{$acc->name}}</h1>
+                        <div cacc
+                            
+                       
                         <div class="fs-5 mb-5">
-                            <span class="text-decoration-line-through">{{$acc->price}} .BDT</span>
+                            @if($acc->discount>0)
+                             <p> <span class="text-decoration"><del>{{$acc->price}} .BDT</del>   {{$acc->price - ($acc->price/$acc->discount)}} .BDT</span></p>
+                             @else
+                             <p> <span class="text-decoration">  {{$acc->price - ($acc->price/$acc->discount)}} .BDT</span></p>
+                             @endif
+                            <p><span class="text-decoration"> {{$acc->stock}} stock available</span></p>
                            
                         </div>
-                        <p class="lead">description here</p>
-                        <div class="d-flex">
-                            <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem">
-                            <button class="btn btn-outline-dark flex-shrink-0" type="button">
-                                <i class="bi-cart-fill me-1"></i>
-                                Add to cart
-                            </button>
+                        <p class="lead">Description here </p>
+                        <p class="lead">{{$acc->description}}</p>
+                        
                         </div>
+                   
+                        
                     </div>
                 </div>
             </div>

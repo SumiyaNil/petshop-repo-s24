@@ -62,7 +62,8 @@
                             <td class="center">{{$item->id}}</td>
                             <td class="center"><img src="{{url('/uploads/'.$item->accessories->image)}}" alt="no image" style="width: 60px;"></td>
                             <td class="left strong">{{$item->accessories->name}}</td>
-                            <td class="right">{{$item->unit_price}}</td>
+                            <td class="right">{{$item->accessories->price}}</td>
+                            <td class="right">{{$item->accessories->disocunt}}</td>
                             <td class="center">{{$item->quantity}}</td>
                             <td class="right">{{$item->subtotal}}</td>
                         </tr>
