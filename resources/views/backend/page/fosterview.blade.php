@@ -11,7 +11,7 @@
       <th scope="col">To date</th>
       <th scope="col">Location</th>
       <th scope="col">Customer</th>
-      <!-- <th scope="col">Breed type</th> -->
+      <th scope="col">Breed type</th>
       <th scope="col">Charge</th>
       <th scope="col">Payment Method</th>
       <th scope="col">Payment status</th>
@@ -29,12 +29,12 @@
       <td>{{$foster->tdate}}</td>
       <td>{{$foster->locationRel->location}}</td>
       <td>{{$foster->customer->name}}</td>
-    
+      <td>{{$foster->breed->name}}</td>
       <td>{{$foster->price}}.BDT</td>
       <td>{{$foster->payment_method}}</td>
       <td>{{$foster->payment_status}}</td>
       <td>{{$foster->status}}</td>
-    <!-- @if($foster->status=='pending')
+    <!-- @if($foster->status=='proccessing')
      
       <td>
         <a class="btn btn-danger" href="{{route('accept.foster',$foster->id)}}">Cancel</a>
@@ -43,9 +43,9 @@
      
      @endif -->
       <td>
-        <a href="" class="btn btn-danger">Cancel</a>
-        <a href="" class="btn btn-success">View</a>
-        <a href="" class="btn btn-primary">Edit</a>
+     
+        <a href="{{route('foster.backend.edit',$foster->id)}}" class="btn btn-success">Update status</a>
+    
       </td>
 
     </tr>

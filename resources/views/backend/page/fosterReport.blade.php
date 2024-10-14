@@ -22,6 +22,11 @@
   
 
   </form>
+
+  <div class="container">
+<button class="btn btn-info" onClick="printReport()">Print</button>
+    
+    <div class="card" id="printArea">
 <div class="row">
     <div class="col-md-4"></div>
     <div class="col-md-4">
@@ -39,6 +44,7 @@
       <th scope="col">From</th>
       <th scope="col">To </th>
       <th scope="col">Customer Name</th>
+      <th scope="col">Breed type</th>
       <th scope="col">Price</th>
      
 
@@ -53,6 +59,7 @@
       <th scope="row">{{$foster->fdate}}</th>
       <th scope="row">{{$foster->tdate}}</th>
       <th scope="row">{{$foster->customer->name}}</th>
+      <th scope="row">{{$foster->breed->name}}</th>
       <th scope="row">{{$foster->price}}.BDT</th>
       
     </tr>
@@ -60,4 +67,19 @@
   </tbody>
   </table>
   </div>
+</div>
+</div>
+  <script type="text/javascript">
+    function printReport()
+    {
+        var printContents = document.getElementById("printArea").innerHTML;
+			var originalContents = document.body.innerHTML;
+
+			document.body.innerHTML = printContents;
+
+			window.print();
+
+			document.body.innerHTML = originalContents;
+    }
+</script>
 @endsection

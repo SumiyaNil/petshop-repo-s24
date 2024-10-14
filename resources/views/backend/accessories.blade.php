@@ -12,7 +12,7 @@
       <th scope="col">Discount</th>
       <th scope="col">Price</th>
       <th scope="col">Image</th>
-      <th scope="col">Status</th>
+      
       <th scope="col">Category ID</th>
       <th scope="col">Action</th>
     </tr>
@@ -27,7 +27,7 @@
       <td>{{$acc->discount}}</td>
       <td>{{$acc->price}}</td>
       <td><img src="{{url('/uploads/'.$acc->image)}}" alt="" width="60"></td>
-      <td>{{$acc->status}} active</td>
+     
       <td>{{$acc->category->name}}</td>
       <td>
         <a class="btn btn-success" href="{{route('accessories.view',$acc->id)}}">View</a>

@@ -261,7 +261,7 @@ class OrderController
            'receiver_name'=>$request->receiver_name,
            'receiver_email'=>$request->email,
            'receiver_address'=>$request->address,
-           'receiver_mobile'=>'01616666666',
+           'receiver_mobile'=>$request->receiver_mobile,
            'payment_method'=>$request->paymentMethod,
            'customer_id'=>auth('customerGuard')->user()->id,
            'total_amount'=>array_sum(array_column($cart,'subtotal'))
@@ -368,4 +368,7 @@ class OrderController
          }
       }
     
+
+      //backend invoice
+     
 }

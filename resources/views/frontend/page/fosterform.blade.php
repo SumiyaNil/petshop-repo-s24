@@ -28,11 +28,11 @@
   
   <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
   <label for="exampleInputPassword1"> Charge </label>
-    <select name="foster_price" onchange="location=this.options[this.selectedIndex].value;">
+    <select name="breed_id" onchange="location=this.options[this.selectedIndex].value;">
           <option value="--Select Breed--">Select Breed</option>  
           @foreach($allbreed as $breed)
           
-            <option value="{{$breed->cost}}">{{$breed->name}} ({{$breed->cost}}. BDT)</option>
+            <option value="{{$breed->id}}">{{$breed->name}} ({{$breed->cost}}. BDT)</option>
           @endforeach
           </select>
     

@@ -1,5 +1,8 @@
 @extends('backend.master')
 @section('content')
+
+
+    
 <h1>{{$title}}</h1>
 
 <div class="row">
@@ -69,7 +72,10 @@ January
   </form>
 </div>
 </div>
-
+<div class="container">
+<button class="btn btn-info" onClick="printReport()">Print</button>
+    
+    <div class="card" id="printArea">
 
 <div class="row">
     <div class="col-md-6">
@@ -100,7 +106,7 @@ January
   <tbody>
 
 @foreach ($allorder as $order)
- 
+
 <tr>
       <th scope="row">{{$order->id}}</th>
       <td>{{$order->receiver_name}}</td>
@@ -112,12 +118,29 @@ January
       <td>{{$order->total_amount}}</td>
       <td>{{$order->created_at}}</td>
      
+
     </tr>
+    
+ 
     @endforeach
   </tbody>
   </table>
   </div>
+  </div>
+</div>
+<script type="text/javascript">
+    function printReport()
+    {
+        var printContents = document.getElementById("printArea").innerHTML;
+			var originalContents = document.body.innerHTML;
 
+			document.body.innerHTML = printContents;
+
+			window.print();
+
+			document.body.innerHTML = originalContents;
+    }
+</script>
 
 
 

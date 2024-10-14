@@ -144,7 +144,10 @@ Route::group(['prefix'=>'admin'],function(){
        Route::get('/location-list',[LocationController::class,'list'])->name('location.list');
        Route::get('/location-form',[LocationController::class,'form'])->name('location.form');
        Route::post('/location-store',[LocationController::class,'store'])->name('location.store');
-      //  Route::get('/location-view/{location_id}',[LocationController::class,'view'])->name('location.view');
+
+       Route::get('/location-edit/{location_id}',[LocationController::class,'edit'])->name('location.edit');
+       Route::get('/location-delete/{location_id}',[LocationController::class,'delete'])->name('location.delete');
+       Route::post('/location-update/{location_id}',[LocationController::class,'update'])->name('location.update');
        //breed
        Route::get('/breedlist',[BreedController::class,'list'])->name('breed.list');
        Route::get('/breedform',[BreedController::class,'form'])->name('breed.form');
@@ -159,7 +162,10 @@ Route::group(['prefix'=>'admin'],function(){
        //foster 
       Route::get('/foster',[FrontendFosterController::class,'fosterViewListBackend'])->name('view.foster.list');
       
-
+      Route::get('/foster-edit/{foster_id}',[FrontendFosterController::class,'fosterEdit'])->name('foster.backend.edit');
+      Route::post('/foster-update/{foster_id}',[FrontendFosterController::class,'fosterUpdate'])->name('foster.backend.update');
+      //invoice for order and foster
+     
 
 
        //animal 

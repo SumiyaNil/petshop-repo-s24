@@ -28,7 +28,7 @@ class FosterController
             'from_date'=>'required|date|after_or_equal:'.date('Y-m-d'),
             'to_date'=>'required|date|after_or_equal:'.date('Y-m-d'),
             'location'=>'required',
-            'foster_price'=>'required',
+          
             'foster_instruction'=>'required',
             'payment_method'=>'required',
         ]);
@@ -46,21 +46,22 @@ class FosterController
    
 
     $days = (int)$start->diffInDays($end);
- 
-        
+    $breed = Breed::find($request->breed_id);
+     
        $foster= Foster::create([
            'fdate'=>date('Y-m-d',strtotime($request->from_date)),
            'tdate'=>date('Y-m-d',strtotime($request->to_date)),
            'location'=>$request->location,
-           'price'=>$request->foster_price * $days,
+           'price'=>$breed->cost * $days,
            'instruction'=>$request->foster_instruction,
            'customer_id'=>auth('customerGuard')->user()->id,
            'payment_method'=>$request->payment_method,
-        //    'breed_id'=>$request->breed_name,
+            'breed_id'=>$request->breed_id,
             
            
            
         ]);
+     
         
         if($request->payment_method != 'cod')
         {
@@ -117,5 +118,23 @@ class FosterController
 
         
         return view('backend.page.fosterview',compact('fosters','breed'));
+    }
+    
+    public function fosterEdit($id)
+    {
+        $fosters = Foster::find($id);
+    
+        return view('backend.page.editfoster',compact('fosters'));
+
+    }
+    public function fosterUpdate(Request $request,$id)
+    {
+     
+        $fosters=Foster::find($id);
+        $fosters->update([
+           'status'=>$request->status,
+        ]);
+        notify()->success('foster booking status updated successfully');
+        return redirect()->route('view.foster.list');
     }
 }

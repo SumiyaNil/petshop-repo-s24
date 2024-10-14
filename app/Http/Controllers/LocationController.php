@@ -39,4 +39,24 @@ class LocationController
      
       return redirect()->route('location.list');
     }
+    public function edit($id)
+    {
+     $location = Location::find($id);
+     return view('backend.page.editLocation',compact('location'));
+    }
+    public function delete($id)
+    {
+       $location = Location::find($id);
+       $location->delete();
+       notify()->success("location deleted successfully");
+       return redirect()->back();
+    }
+    public function update(Request $request,$id)
+    {
+      $location = Location::find($id);
+       $location->update([
+        'location'=>$request->location,
+       ]);
+       return redirect()->back();
+    }
 }

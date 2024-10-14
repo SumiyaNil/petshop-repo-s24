@@ -14,13 +14,14 @@ return new class extends Migration
         Schema::create('fosters', function (Blueprint $table) {
             $table->id();
             $table->integer('customer_id');
-            // $table->integer('breed_id');
+            $table->integer('breed_id');
             $table->date('fdate');
             $table->date('tdate');
             $table->string('location');
             $table->double('price',2,10);
             $table->string('payment_method');
             $table->string('payment_status')->default('pending');
+            $table->string('status')->default('processing');
             $table->string('instruction');
             $table->timestamps();
         });

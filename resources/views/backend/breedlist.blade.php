@@ -7,9 +7,9 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Breed Name</th>
-      <th scope="col">Cost
+      <th scope="col">Cost</th>
     
-      <th scope="col">Status</th>
+   
      
       <th scope="col">Action</th>
     </tr>
@@ -20,8 +20,7 @@
       <th scope="row">{{$key+1}}</th>
       <td>{{$breed->name}}</td>
       <td>{{$breed->cost}}</td>
-      
-      <td>{{$breed->status}}</td>
+    
       
       <td>
         <a class="btn btn-success" href="{{route('view.breed',$breed->id)}}">View</a>
