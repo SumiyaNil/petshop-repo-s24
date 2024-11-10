@@ -9,7 +9,7 @@ class BreedController
 {
     public function list()
     {
-     $allbreed=Breed::paginate(5);
+     $allbreed=Breed::paginate(20);
      return view('backend.breedlist',compact('allbreed'));
     }
     public function form()

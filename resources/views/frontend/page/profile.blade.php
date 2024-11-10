@@ -17,7 +17,7 @@
     <div class="row">
       <div class="col-lg-4">
         <div class="card mb-4">
-          <div class="card-body text-center">
+          <div class="card-body text-align-center">
             
             <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Image not found"
               class="rounded-circle img-fluid" style="width: 150px;">
@@ -36,7 +36,7 @@
             <ul class="list-group list-group-flush rounded-3">
               <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                 <i class="fas fa-globe fa-lg text-warning"></i>
-               <a href="{{route('profile.order')}}">
+               <a href="{{route('profile.order')}}" class="text-center">
                <p class="mb-0">Order</p>
                </a> 
               </li>

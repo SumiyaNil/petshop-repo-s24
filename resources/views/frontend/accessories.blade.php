@@ -7,21 +7,21 @@
 <section id="clothing" class="my-5 overflow-hidden">
   <div class="container pb-5">
     <div class="section-header d-md-flex justify-content-between align-items-center mb-3">
-      <h2 class="display-3 fw-normal">Accessories</h2>
+      <h2 class="display-3 fw-normal">Accessories </h2>
     </div>
 
-    <div class="products-carousel swiper">
+    <div class="products-carousel swiper ">
       <div class="swiper-wrapper d-flex">
 
         <div class="swiper-slide">
          
 
-          <div class="card">
+          <div class="card ">
             <div class="row">
              
               @foreach ($allaccessories as $acc)
         
-        <div class="col-md-4">
+        <div class="col-md-4 border border-3 mt-2">
               @if($acc->discount > 0)
               <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
                 {{$acc->discount}} %
@@ -50,31 +50,29 @@
                       
                       <div class="d-flex flex-column mb-4 lead">
                       
-                        <h5 class="text-black mb-1 pb-3">Stock: {{$acc->stock > 0 ? $acc->stock : 'Out of Stock'}}</h5>
+                        <h5 class="text-black mb-1 pb-3 text-center">Stock: {{$acc->stock > 0 ? $acc->stock : 'Out of Stock'}}</h5>
                         <span style="color: transparent;">0</span>
                       </div>
                     </div>
                   </div>
                 </a>
-                <div class="d-flex flex-wrap mt-3">
+                <div class="d-flex flex-wrap mt-3 text-align-center">
                   @if($acc->stock > 0)
-                  <a href="{{route('add.cart',$acc->id)}}" class="btn btn-primary" color="dark">
+                  <a href="{{route('add.cart',$acc->id)}}" class="btn btn-primary" color="dark" style="margin-left:80px;">
                     Add to cart
                   </a>
-                  @else
-                  <a disabled href="" class="btn btn-primary" color="dark">
+                  @else 
+                  <a disabled href="" class="btn btn-primary text-align-center" color="dark">
                     Add to cart
                   </a>
                   @endif
-                  <!-- <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-danger active">
-                    Buy now
-                  </button> -->
+                 
             </div>
 
         </div>
         
 
-@endforeach
+       @endforeach
 
                
             </div>
@@ -87,8 +85,20 @@
     </div>
    
   </div>
+  <div id="data-wrapper">
+
+
+
+    </div>
+<div class="text-center">
+
+<button class="btn btn-success load-more-data"><i class="fa fa-refresh"></i> Load More Data...</button>
+
+</div>
+
 </section>
 
 </section>
+@include('frontend.page.load')
 
 @endsection

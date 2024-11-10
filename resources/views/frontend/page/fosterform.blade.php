@@ -1,6 +1,7 @@
 @extends('frontend.master')
 @section('content')
-
+<div class="container">
+  <div class="row">
 <div class="form-group p-5">
 
 <form action="{{route('foster.store')}}" method="post" enctype="multipart/form-data">
@@ -14,10 +15,10 @@
     <label for="exampleInputPassword1">To</label>
     <input name="to_date" type="date" required class="form-control" id="exampleInputPassword1" placeholder="Enter your return date">
   </div>
-  <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
-    <label for="exampleInputPassword" >Enter Location</label>
+  <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end form-group">
+    <label for="exampleInputPassword" class="mt-2 " >Location</label>
     
-    <select onchange="location=this.options[this.selectedIndex].value;"  name="location">
+    <select class="form-control" onchange="location=this.options[this.selectedIndex].value;"  name="location">
          <option value="--Select Location--">Select Location</option>   
           @foreach($location as $local)
           
@@ -26,9 +27,9 @@
           </select>
   </div>
   
-  <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
+  <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end form-group">
   <label for="exampleInputPassword1"> Charge </label>
-    <select name="breed_id" onchange="location=this.options[this.selectedIndex].value;">
+    <select class="form-control" name="breed_id" onchange="location=this.options[this.selectedIndex].value;">
           <option value="--Select Breed--">Select Breed</option>  
           @foreach($allbreed as $breed)
           
@@ -83,8 +84,11 @@
    </div>    
 </form>
 </div> 
+  </div>
+</div>
 
 
+<!-- modal -->
 <div class="modal fade" id="termModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -94,7 +98,12 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <p>Terms and condition for .....................</p>
+      <p>Terms and condition for BOOKING</p>
+      <p><ul type="circle" class="mt-3 md-3">
+        <li> 1.We have 300+ capacity for your pets</li>
+        <li> 2.If you have done the payment online you cann't cancel your booking</li>
+        <li> 3.If you haven't done the payment then you can pay on cash on delivery when you take you pet from our caring system</li>
+      </ul></p>
       
       </div>
       <div class="modal-footer">

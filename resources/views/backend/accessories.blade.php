@@ -1,8 +1,15 @@
 @extends('backend.master')
 @section('content')
+<style>
+.a{
+    text-align: center;
+    font-size: large;
+  }
+  </style>
 <div>
-  <h1>accessories list</h1>
-<table class="table">
+  <h1 class="a"><b>Accessories list</b></h1>
+  <div><a href="{{route('accessories.form')}}" class="btn btn-primary">Go to Accessories Form</a></div>
+<table class="data-table">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -17,31 +24,57 @@
       <th scope="col">Action</th>
     </tr>
   </thead>
-  <tbody>
-    @foreach($allaccessories as $key=>$acc)
-    <tr>
-      <th scope="row">{{$key+1}}</th>
-      <td>{{$acc->name}}</td>
-      <td>{{$acc->description}}</td>
-      <td>{{$acc->stock}}</td>
-      <td>{{$acc->discount}}</td>
-      <td>{{$acc->price}}</td>
-      <td><img src="{{url('/uploads/'.$acc->image)}}" alt="" width="60"></td>
-     
-      <td>{{$acc->category->name}}</td>
-      <td>
-        <a class="btn btn-success" href="{{route('accessories.view',$acc->id)}}">View</a>
-        <a class="btn btn-info" href="{{route('accessories.edit',$acc->id)}}">Edit</a>
-        <a class="btn btn-danger" href="{{route('accessories.delete',$acc->id)}}">Delete</a>
-      </td>
-    </tr>
-    @endforeach
+  <tbody class="">
+  
   </tbody>
 </table>
-<div><a href="{{route('accessories.form')}}" class="btn btn-primary">Go to Accessories Form</a></div>
+
 </div>
 
 <div>
-  {{$allaccessories->links()}}
+  
 </div>
+
 @endsection
+@push('js')
+
+<script type="text/javascript">
+
+  $(function () {
+
+    
+
+    var table = $('.data-table').DataTable({
+
+        processing: true,
+
+        serverSide: false,
+
+        ajax: "{{ route('ajax.get.data') }}",
+
+        columns: [
+
+            {data: 'id', name: 'id'},
+
+            {data: 'name', name: 'name'},
+
+            {data: 'description', name: 'description'},
+            {data: 'stock', name: 'stock'},
+            {data: 'discount', name: 'discount'},
+            {data: 'price', name: 'price'},
+            {data: 'image', name: 'image'},
+            {data: 'category_id', name: 'category_id'},
+
+            {data: 'action', name: 'action', orderable: false, searchable: false},
+
+        ]
+
+    });
+
+    
+
+  });
+
+</script>
+
+@endpush

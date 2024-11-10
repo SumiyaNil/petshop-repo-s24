@@ -16,9 +16,9 @@
                         <h1 class="display-5 fw-bolder">{{$singleAccessories->name}}</h1>
                         <div class="fs-5 mb-5">
                             @if($singleAccessories->discount>0)
-                             <p> <span class="text-decoration"><del>{{$singleAccessories->price}} .BDT</del>   {{$singleAccessories->price - ($singleAccessories->price/$singleAccessories->discount)}} .BDT</span></p>
+                             <p> <span class="text-decoration"><del>{{$singleAccessories->price}} .BDT</del>   {{$singleAccessories->price - ($singleAccessories->price*($singleAccessories->discount/100))}} .BDT</span></p>
                              @else
-                             <p> <span class="text-decoration">  {{$singleAccessories->price - ($singleAccessories->price/$singleAccessories->discount)}} .BDT</span></p>
+                             <p> <span class="text-decoration">  {{$singleAccessories->price - ($singleAccessories->price*($singleAccessories->discount/100))}} .BDT</span></p>
                              @endif
                             <p><span class="text-decoration"> {{$singleAccessories->stock}} stock available</span></p>
                            

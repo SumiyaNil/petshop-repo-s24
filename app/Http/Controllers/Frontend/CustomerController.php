@@ -18,7 +18,7 @@ class CustomerController
         'customer_name'=>'required',
         'email'=>'required|email',
         'password'=>'required|confirmed|min:4',
-        'mobile_number'=>'required|min:11|max:11',
+        'mobile_number'=>'required|numeric',
         
         
 

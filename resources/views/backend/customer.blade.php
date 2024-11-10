@@ -1,6 +1,13 @@
 @extends('backend.master')
 @section('content')
-<h1>Customer list</h1>
+<style>
+.a{
+    text-align: center;
+    font-size: large;
+  }
+  </style>
+<div>
+  <h1 class="a"><b>Customer list</b></h1>
 <div>
 <table class="table">
   <thead>
@@ -33,7 +40,7 @@
   </tbody>
 </table>
 </div>
-<div><a href="{{route('customer.form')}}" class="btn btn-primary">Go to customer form</a></div>
+<!-- <div><a href="{{route('customer.form')}}" class="btn btn-primary">Go to customer form</a></div> -->
 
  {{$allcustomer->links()}}
 @endsection

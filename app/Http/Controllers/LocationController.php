@@ -10,7 +10,7 @@ class LocationController
 {
     public function list()
     {
-        $location=Location::paginate(5);
+        $location=Location::paginate(20);
         return view('backend.locationlist',compact('location'));
     }
     public function form()

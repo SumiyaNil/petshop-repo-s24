@@ -10,7 +10,8 @@
       <th scope="col">To date</th>
       <th scope="col">Location</th>
       <th scope="col">Charge</th>
-    
+      <th scope="col">Breed</th>
+      <th scope="col">Payment method</th>
       <th scope="col">Payment Status</th>
       
     </tr>
@@ -25,7 +26,8 @@
       <td>{{$foster->tdate}}</td>
       <td>{{$foster->locationRel->location}}</td>
       <td>{{$foster->price}}</td>
-      
+      <td>{{$foster->breed->name}}</td>
+      <td>{{$foster->payment_method}}</td>
       <td>{{$foster->payment_status}}</td>
    
     

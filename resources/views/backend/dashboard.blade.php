@@ -118,10 +118,15 @@
     .text-faded {
         color: rgba(255, 255, 255, 0.7);
     }
+    
 
+.a{
+  text-align: center;
+  font-size: large;
+}
 </style>
 
-<h1>Dashboard</h1>
+<h1 class="a"><b>Dashboard</b></h1>
 
 
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
@@ -131,7 +136,7 @@
       <div class="circle-tile ">
         <a href="#"><div class="circle-tile-heading dark-blue"><i class="fa fa-users fa-fw fa-3x"></i></div></a>
         <div class="circle-tile-content dark-blue">
-          <div class="circle-tile-description text-faded">Total Customers</div>
+          <div class="circle-tile-description text-faded">Total Customers information</div>
           <div class="circle-tile-number text-faded ">{{$customerCount}}</div>
           <a class="circle-tile-footer" href="{{route('customer.list')}}">More Info<i class="fa fa-chevron-circle-right"></i></a>
         </div>
@@ -142,7 +147,7 @@
       <div class="circle-tile ">
         <a href="#"><div class="circle-tile-heading red"><i class="fa fa-users fa-fw fa-3x"></i></div></a>
         <div class="circle-tile-content red">
-          <div class="circle-tile-description text-faded"> Total Sale</div>
+          <div class="circle-tile-description text-faded"> Total Sale information</div>
           <div class="circle-tile-number text-faded ">{{$totalSale}}</div>
           <a class="circle-tile-footer" href="{{route('order.list')}}">More Info<i class="fa fa-chevron-circle-right"></i></a>
         </div>
@@ -153,8 +158,8 @@
       <div class="circle-tile ">
         <a href="#"><div class="circle-tile-heading yellow "><i class="fa fa-users fa-fw fa-3x"></i></div></a>
         <div class="circle-tile-content yellow">
-          <div class="circle-tile-description text-faded"> Total foster order </div>
-          <div class="circle-tile-number text-faded ">{{$fostercount}}</div>
+          <div class="circle-tile-description text-faded"> Total foster booking </div>
+          <div class="circle-tile-number text-faded ">{{$allfoster}}</div>
           <a class="circle-tile-footer" href="{{route('view.foster.list')}}">More Info<i class="fa fa-chevron-circle-right"></i></a>
         </div>
       </div>
@@ -164,7 +169,7 @@
       <div class="circle-tile ">
         <a href="#"><div class="circle-tile-heading orange"><i class="fa fa-users fa-fw fa-3x"></i></div></a>
         <div class="circle-tile-content orange">
-          <div class="circle-tile-description text-faded"> Total Accessories </div>
+          <div class="circle-tile-description text-faded"> Total Accessories information </div>
           <div class="circle-tile-number text-faded ">{{$allaccessories}}</div>
           <a class="circle-tile-footer" href="{{route('accessories.list')}}">More Info<i class="fa fa-chevron-circle-right"></i></a>
         </div>

@@ -95,12 +95,9 @@ class FosterController
     }
     public function acceptFoster($id)
     {
-        $allfoster=Foster::find($id);
+        $allfoster=Foster::find($id)->delete();
         
-        $allfoster->update([
-            'status'=>'cancel'
-            
-        ]);
+       
         notify()->success('Your request cancelled');
         return redirect()->back();
     }

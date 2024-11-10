@@ -47,9 +47,10 @@
                             <th>Item</th>
                           
                             <th>Image</th>
-                            <th class="right">Unit Cost</th>
-                            <th class="center">Qty</th>
-                            <th class="right">Subtotal</th>
+                            <th class="col">Unit Cost</th>
+                            <th class="col">Discount</th>
+                            <th class="col">Qty</th>
+                            <th class="col">Subtotal</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -59,13 +60,13 @@
                         
                         <tr>
                             
-                            <td class="center">{{$item->id}}</td>
-                            <td class="center"><img src="{{url('/uploads/'.$item->accessories->image)}}" alt="no image" style="width: 60px;"></td>
-                            <td class="left strong">{{$item->accessories->name}}</td>
-                            <td class="right">{{$item->accessories->price}}</td>
-                            <td class="right">{{$item->accessories->disocunt}}</td>
-                            <td class="center">{{$item->quantity}}</td>
-                            <td class="right">{{$item->subtotal}}</td>
+                            <td class="col">{{$item->id}}</td>
+                            <td class="col"><img src="{{url('/uploads/'.$item->accessories->image)}}" alt="no image" style="width: 60px;"></td>
+                            <td class="col">{{$item->accessories->name}}</td>
+                            <td class="col">{{$item->accessories->price}}</td>
+                            <td class="col">{{$item->accessories->discount}}%</td>
+                            <td class="col">{{$item->quantity}}</td>
+                            <td class="col">{{$item->subtotal}}</td>
                         </tr>
 
                         @endforeach
@@ -85,7 +86,7 @@
                                 <td class="left">
                                     <strong>Subtotal</strong>
                                 </td>
-                                <td class="right">{{$order->subtotal}}</td>
+                                <td class="right">{{$item->subtotal}}</td>
                             </tr>
                             <!-- <tr>
                                 <td class="left">

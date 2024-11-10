@@ -7,17 +7,47 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\UploadedFile;
+use Yajra\DataTables\Facades\DataTables;
 
 class AccessoriesController
 {
   public function accessories()
   {
-    $allaccessories=Accessories::with('category')->paginate(5);
+    
        
        
-     return view('backend.accessories',compact('allaccessories')); 
+     return view('backend.accessories'); 
     
   }
+  public function getData()
+  {
+    $data = Accessories::all();
+
+    return DataTables::of($data)
+
+            ->addIndexColumn()
+
+            ->addColumn('action', function($row){
+
+
+
+                   $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
+
+
+
+                    return $btn;
+
+            })
+
+            ->rawColumns(['action'])
+
+            ->make(true);
+
+}
+
+
+
+  
   public function form()
   {
     $allCategory=Category::all();
@@ -94,7 +124,8 @@ class AccessoriesController
     $acc->update([
        'name' => $request->acc_title, 
        'stock' =>$request->acc_stock,
-       'price' =>$request->acc_price
+       'price' =>$request->acc_price,
+       'discount'=>$request->discount,
     ]);
     notify()->success('Accessories updated successfully');
     return redirect()->route('accessories.list');

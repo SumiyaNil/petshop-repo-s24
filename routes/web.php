@@ -22,6 +22,7 @@ use App\Http\Controllers\PaymentController;
 
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\UserController;
+use App\Models\Accessories;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -53,6 +54,8 @@ Route::post('/update-cart/{pID}',[OrderController::class,'updateCart'])->name('u
 Route::get('/clear-cart',[OrderController::class, 'clearCart'])->name('cart.clear');
 Route::get('/cart/item/delete/{id}',[OrderController::class, 'cartItemDelete'])->name('cart.item.delete');
 Route::get('/search',[FrontendAccessoriesController::class,'search'])->name('search');
+//load more
+Route::get('/load',[FrontendAccessoriesController::class,'load'])->name('load');
 //logout and checkout
 Route::group(['middleware'=>'customer_auth'],function(){
    Route::get('/logout',[FrontendCustomerController::class,'logout'])->name('frontend.logout');
@@ -97,6 +100,7 @@ Route::group(['prefix'=>'admin'],function(){
        Route::get('/accessories',[AccessoriesController::class,'accessories'])->name('accessories.list');
        Route::get('accessories-form',[AccessoriesController::class,'form'])->name('accessories.form');
        Route::post('accessories-store',[AccessoriesController::class,'store'])->name('accessories.store');
+       Route::get('/ajax-get-data',[AccessoriesController::class,'getData'])->name('ajax.get.data');
        //accessories delete
        Route::get('/accessories-delete/delete/{acc_id}',[AccessoriesController::class,'delete'])->name('accessories.delete');
        Route::get('/accessories-view/view/{acc_id}',[AccessoriesController::class,'view_accessories'])->name('accessories.view');

@@ -9,7 +9,7 @@
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Customer number</label>
-    <input name="customer_number" required type="text" class="form-control" id="c_number" placeholder="Enter customer contact number">
+    <input name="customer_number" required type="number" class="form-control" id="c_number" placeholder="Enter customer contact number">
     
   </div>
   <div class="form-group">

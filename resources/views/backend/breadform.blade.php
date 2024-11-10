@@ -11,7 +11,7 @@
   <div class="form-group">
     <label for="exampleInputPassword1">Cost</label>
 
-   <input type="integer" name="cost" placeholder="Enter price for breeds" class="form-control">
+   <input type="number" min="1"  name="cost" placeholder="Enter price for breeds" class="form-control">
    </select>
   </div>
  

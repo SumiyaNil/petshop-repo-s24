@@ -43,10 +43,10 @@
               </div>
               <form action="{{route('update.cart',$cartData['acc_id'])}}" method="post">  
                 @csrf
-                <input id="form1" min="0" name="quantity" value="{{$cartData['quantity']}}" type="number"
+                <input id="form1" min="1" name="quantity" value="{{$cartData['quantity']}}" type="number"
                   class="btn active" />
 
-                <button class="btn btn-info active" type="submit"> Update</button>
+                <button class="btn btn-info active mt-2" type="submit"> Update</button>
                   </form>
               </div>
              

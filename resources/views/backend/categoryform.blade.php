@@ -2,7 +2,14 @@
 
 
 @section('content')
-<h1>Category Form</h1>
+<style>
+
+  .a{
+    text-align: center;
+    font-size: large;
+  }
+</style>
+<h1 class="a"><b>Category Form</b></h1>
 
 
 

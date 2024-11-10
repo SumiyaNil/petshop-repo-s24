@@ -52,8 +52,8 @@
                       </div>
                       
                       <div class="d-flex flex-column mb-4 lead">
-                        <span class="mb-2">Description: {{$acc->description}}</span>
-                        <span class="mb-2">Stock: {{$acc->stock > 0 ? $acc->stock : 'Out of Stock'}}</span>
+                        <!-- <span class="mb-2">Description: {{$acc->description}}</span> -->
+                        <span class="mb-2 text-center">Stock: {{$acc->stock > 0 ? $acc->stock : 'Out of Stock'}}</span>
                         <span style="color: transparent;">0</span>
                       </div>
                     </div>
@@ -69,9 +69,9 @@
                 Add to cart
               </a>
               @endif
-              <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-danger">
+              <!-- <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-danger">
                 Buy now
-              </button>
+              </button> -->
             </div>
 
               </div>

@@ -1,5 +1,14 @@
 @extends('backend.master')
 @section('content')
+
+<style>
+.a{
+    text-align: center;
+    font-size: large;
+  }
+  </style>
+
+  <h1 class="a"><b>Location list</b></h1>
 <a class="btn btn-primary" href="{{route('location.form')}}">Give location</a>
 <table class="table">
   <thead>

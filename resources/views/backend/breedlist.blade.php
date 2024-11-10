@@ -1,7 +1,13 @@
 @extends('backend.master')
 @section('content')
+<style>
+.a{
+    text-align: center;
+    font-size: large;
+  }
+  </style>
 <div>
-  <h1>Breed list</h1>
+  <h1 class="a"><b>Breed list</b></h1>
 <table class="table">
   <thead>
     <tr>

@@ -14,15 +14,15 @@
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Stock</label>
-    <input name="acc_stock" type="text" required class="form-control" id="exampleInputPassword1" placeholder="stock details">
+    <input name="acc_stock" type="number" min="1" required class="form-control" id="exampleInputPassword1" placeholder="stock details">
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Discount(%)</label>
-    <input name="discount" type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter Discount here">
+    <input name="discount" type="number" min="0"  class="form-control" id="exampleInputPassword1" placeholder="Enter Discount here">
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Accessories price</label>
-    <input name="acc_price" type="text" required class="form-control" id="exampleInputPassword1" placeholder="price">
+    <input name="acc_price" type="number" min="1" required class="form-control" id="exampleInputPassword1" placeholder="price">
   </div>
   <div class="form-group">
     <label for="image">Accessories Image</label>

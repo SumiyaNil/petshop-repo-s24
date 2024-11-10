@@ -200,7 +200,7 @@
 
                   <a href="{{route('view.foster')}}" class="mx-3">Foster order
                   <span class="position-absolute translate-middle badge rounded-circle bg-primary pt-2">
-                      {{$fostercount}}             
+                     @guest('customerGuard') 0 @endguest @auth('customerGuard') {{$fostercount}} @endauth        
                     </span>
                   </a>
                 </li>

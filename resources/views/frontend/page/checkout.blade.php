@@ -63,12 +63,12 @@
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label >Receiver name</label>
-                <input name="receiver_name" type="text" class="form-control" placeholder="Receiver name" value="" required>
+                <input name="receiver_name" type="text" class="form-control" placeholder="Receiver name" value="{{auth('customerGuard')->user()->name}}" required>
                 
               </div>
               <div class="col-md-6 mb-3">
                 <label >Receiver mobile</label>
-                <input name="receiver_mobile" type="text" class="form-control" placeholder="Receiver mobile" value="" required>
+                <input name="receiver_mobile" type="text" class="form-control" placeholder="Receiver mobile" value="{{auth('customerGuard')->user()->number}}" required>
                 
               </div>
               

@@ -1,6 +1,14 @@
 @extends('backend.master')
 @section('content')
-<h1>this is a category list</h1>
+
+<style>
+.a{
+    text-align: center;
+    font-size: large;
+  }
+  </style>
+<div>
+  <h1 class="a"><b>Category list</b></h1>
 
 
 

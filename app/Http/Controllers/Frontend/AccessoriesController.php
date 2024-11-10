@@ -29,4 +29,25 @@ class AccessoriesController
       $allaccessories=Accessories::where('name','LIKE','%'.request()->search_key.'%')->get();
       return view('frontend.page.search', compact('allaccessories'));
     }
+    public function load()
+    {
+      $allaccessories = Accessories::paginate(10);
+
+  
+
+      if (request()->ajax()) {
+
+          $view = view('frontend.accessories', compact('allaccessories'))->render();
+
+
+
+          return response()->json(['html' => $view]);
+
+      }
+
+
+
+      return view('frontend.page.load', compact('allaccessories')); 
+    }
+
 }

@@ -1,8 +1,13 @@
 @extends('backend.master')
 @section('content')
-
+<style>
+.a{
+    text-align: center;
+    font-size: large;
+  }
+  </style>
 <div>
-  <h1>Foster request list</h1>
+  <h1 class="a"><b>Foster booking list</b></h1>
 <table class="table">
   <thead>
     <tr>

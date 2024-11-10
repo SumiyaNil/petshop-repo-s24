@@ -23,7 +23,7 @@
 
 <div class="form-group">
     
-<button type="submit" class="btn btn-info"><label for="exampleInputPassword1">Search</label></button>
+<button type="submit" class="btn btn-info active text-white"><label for="exampleInputPassword1">Search</label></button>
               
             
 </div>
@@ -63,7 +63,7 @@ January
 
 <div class="form-group">
     
-<button type="submit" class="btn btn-info"><label for="exampleInputPassword1">Search</label></button>
+<button type="submit" class="btn btn-info active text-white"><label for="exampleInputPassword1">Search</label></button>
               
             
 </div>
@@ -73,7 +73,7 @@ January
 </div>
 </div>
 <div class="container">
-<button class="btn btn-info" onClick="printReport()">Print</button>
+<button class="btn btn-info mt-5 md-5 text-white" onClick="printReport()">Print</button>
     
     <div class="card" id="printArea">
 
@@ -98,8 +98,8 @@ January
       
                <th scope="col">Total amount</th>
               <th scope="col"> Order date</th>
-      <!-- <th scope="col">Status</th>
-      <th scope="col">Action</th> -->
+               <th scope="col">Status</th>
+              
 
     </tr>
   </thead>
@@ -117,6 +117,7 @@ January
    
       <td>{{$order->total_amount}}</td>
       <td>{{$order->created_at}}</td>
+      <td>{{$order->status}}</td>
      
 
     </tr>

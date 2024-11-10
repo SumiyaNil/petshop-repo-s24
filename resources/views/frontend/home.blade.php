@@ -148,7 +148,7 @@
                 <h2 class="banner-title display-1 fw-normal">Best destination for <span class="text-primary">your
                     pets</span>
                 </h2>
-                <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                <a href="{{route('frontend.accessories')}}" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
                   shop now
                   <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
                     <use xlink:href="#arrow-right"></use>
@@ -186,7 +186,7 @@
                 <h2 class="banner-title display-1 fw-normal">Best Care for <span class="text-primary">your
                     pets</span>
                 </h2>
-                <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                <a href="{{route('frontend.accessories')}}" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
                   shop now
                   <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
                     <use xlink:href="#arrow-right"></use>
@@ -258,7 +258,7 @@
              
               @foreach ($allaccessories as $acc)
         
-        <div class="col-md-4">
+        <div class="col-md-4 border border-3 mt-2">
               @if($acc->discount > 0)
               <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
                 {{$acc->discount}} %
@@ -287,7 +287,7 @@
                       
                       <div class="d-flex flex-column mb-4 lead">
                       
-                        <h5 class="text-black mb-1 pb-3">Stock: {{$acc->stock > 0 ? $acc->stock : 'Out of Stock'}}</h5>
+                        <h5 class="text-black mb-1 pb-3 text-center">Stock: {{$acc->stock > 0 ? $acc->stock : 'Out of Stock'}}</h5>
                         <span style="color: transparent;">0</span>
                       </div>
                     </div>
@@ -295,11 +295,11 @@
                 </a>
                 <div class="d-flex flex-wrap mt-3">
                   @if($acc->stock > 0)
-                  <a href="{{route('add.cart',$acc->id)}}" class="btn btn-primary" color="dark">
+                  <a href="{{route('add.cart',$acc->id)}}" class="btn btn-primary" color="dark" style="margin-left:80px;">
                     Add to cart
                   </a>
                   @else
-                  <a disabled href="" class="btn btn-primary" color="dark">
+                  <a disabled href="" class="btn btn-primary" color="dark" style="margin-left:80px;">
                     Add to cart
                   </a>
                   @endif
@@ -353,9 +353,9 @@
 
       </div>
     </div>
-  </section>
+  </section> -->
 
-  <section id="testimonial">
+  <!-- <section id="testimonial">
     <div class="container my-5 py-5">
       <div class="row">
         <div class="offset-md-1 col-md-10">

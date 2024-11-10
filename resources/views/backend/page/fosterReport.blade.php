@@ -1,5 +1,7 @@
 @extends('backend.master')
 @section('content')
+
+
 <h1>this is report page for Foster</h1>
 <form class="form-inline my-2 my-lg-0" id="search-form" action="{{route('check.foster.report')}}">
 @csrf
@@ -15,16 +17,17 @@
 
 <div class="form-group">
     
-<button type="submit" class="btn btn-info"><label for="exampleInputPassword1">Search</label></button>
+<button type="submit" class="btn btn-info active text-white"><label for="exampleInputPassword1">Search</label></button>
               
             
 </div>
   
 
   </form>
+  
 
   <div class="container">
-<button class="btn btn-info" onClick="printReport()">Print</button>
+<button class="btn btn-info mt-5 md-5 text-white" onClick="printReport()">Print</button>
     
     <div class="card" id="printArea">
 <div class="row">
@@ -60,7 +63,7 @@
       <th scope="row">{{$foster->tdate}}</th>
       <th scope="row">{{$foster->customer->name}}</th>
       <th scope="row">{{$foster->breed->name}}</th>
-      <th scope="row">{{$foster->price}}.BDT</th>
+      <th scope="row">{{$foster->price}}BDT</th>
       
     </tr>
     @endforeach

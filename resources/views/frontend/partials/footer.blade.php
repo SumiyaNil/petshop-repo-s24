@@ -7,7 +7,7 @@
           <div class="footer-menu">
             <img src="{{url('/logo.png')}}" alt="logo">
             <p class="blog-paragraph fs-6 mt-3">Subscribe to our newsletter to get updates about our grand offers.</p>
-            <div class="social-links">
+            <!-- <div class="social-links">
               <ul class="d-flex list-unstyled gap-2">
                 <li class="social">
                   <a href="#">
@@ -36,7 +36,7 @@
                 </li>
 
               </ul>
-            </div>
+            </div> -->
           </div>
         </div>
         <div class="col-md-3">
@@ -52,36 +52,26 @@
               <li class="menu-item">
                 <a href="{{route('frontend.foster')}}" class="nav-link">New Foster request </a>
               </li>
-
+              <li class="menu-item">
+                <a href="{{route('profile.page')}}" class="nav-link">Profile </a>
+              </li>
+              
             </ul>
           </div>
         </div>
-        <div class="col-md-3">
-          <div class="footer-menu">
-            <h3>Help Center</h5>
+          <div class="col-md-3">
+            <div class="footer-menus">
+              <h1>Contact us</h1>
               <ul class="menu-list list-unstyled">
-                <li class="menu-item">
-                  <a href="#" class="nav-link">FAQs</a>
-                </li>
-                <li class="menu-item">
-                  <a href="#" class="nav-link">Payment</a>
-                </li>
-                <li class="menu-item">
-                  <a href="#" class="nav-link">Returns & Refunds</a>
-                </li>
-                <li class="menu-item">
-                  <a href="#" class="nav-link">Checkout</a>
-                </li>
-                <li class="menu-item">
-                  <a href="#" class="nav-link">Delivery Information</a>
-                </li>
+              <li class="menu-item">
+                <p>Email:sumaiya@gmail.com</p>
+              </li>
+              <li class="menu-item">
+                <p>Phone:019141467600</p>
+              </li>
               </ul>
+            </div>
           </div>
-        </div>
-        <div class="col-md-3">
-         
-          
-        </div>
 
       </div>
     </div>

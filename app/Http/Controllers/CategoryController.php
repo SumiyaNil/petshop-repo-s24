@@ -11,7 +11,7 @@ class CategoryController
 {
     public function list()
     {
-        $allCategory=Category::paginate(5);
+        $allCategory=Category::paginate(20);
        
         return view('backend.categorylist',compact('allCategory'));   
         

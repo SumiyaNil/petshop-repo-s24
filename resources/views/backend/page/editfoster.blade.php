@@ -6,7 +6,7 @@
 <form action="{{route('foster.backend.update',$fosters->id)}}" method="post" enctype="multipart/form-data">
     @csrf
     <select name="status" id="" class="form-control">
-    <option value="Delivery">Cancel</option>
+    <option value="Cancel">Cancel</option>
     <option value="Pending">Pending</option>
     <option value="Processing">Processing</option>
     <option value="confirm">Confirm</option>
