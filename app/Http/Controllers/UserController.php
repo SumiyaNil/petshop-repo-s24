@@ -12,6 +12,7 @@ class UserController
 public function loginentry()
 {
     return view('backend.loginentry');
+    
 }
 public function form(Request $request)
 {

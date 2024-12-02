@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Frontend\SslCommerzPaymentController;
+use App\Jobs\OrderEmailJob;
 use App\Mail\OrderEmail;
 use App\Models\Accessories;
 use App\Models\Customer;
@@ -293,8 +294,8 @@ class OrderController
           
           DB::commit();
           
-          Mail::to($request->email)->send(new OrderEmail($order));
-
+         // Mail::to($request->email)->send(new OrderEmail($order));
+         dispatch(new OrderEmailJob($request->email,$order)); 
 
           if($request->paymentMethod != 'cod')
         {

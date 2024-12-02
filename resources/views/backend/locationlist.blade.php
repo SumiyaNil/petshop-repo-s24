@@ -9,6 +9,7 @@
   </style>
 
   <h1 class="a"><b>Location list</b></h1>
+  <h1>{{$title}}</h1>
 <a class="btn btn-primary" href="{{route('location.form')}}">Give location</a>
 <table class="table">
   <thead>

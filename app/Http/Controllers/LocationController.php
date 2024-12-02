@@ -2,16 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\CreateLocationEvent;
 use App\Models\Location;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Validator;
 
 class LocationController
 {
     public function list()
     {
-        $location=Location::paginate(20);
-        return view('backend.locationlist',compact('location'));
+      if(Cache::get('saima'))
+      {
+         $title = "data coming from cache";
+         $location = Location::paginate(20);
+      }
+      else{
+         $title = "data is coming from database";
+         $location=Location::paginate(20);
+         Cache::put('saima',$location);
+      }
+       
+        return view('backend.locationlist',compact('location','title'));
     }
     public function form()
     { 
@@ -36,6 +48,7 @@ class LocationController
       Location::create([
          'location'=>$request->location,
       ]);
+      CreateLocationEvent::dispatch();
      
       return redirect()->route('location.list');
     }

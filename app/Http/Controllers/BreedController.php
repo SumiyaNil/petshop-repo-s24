@@ -2,15 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\CreateBreedEvent;
 use App\Models\Breed;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class BreedController
 {
     public function list()
     {
-     $allbreed=Breed::paginate(20);
-     return view('backend.breedlist',compact('allbreed'));
+      if(Cache::get('manal'))
+      {
+        $title="data is coming from cache";
+        $allbreed=Breed::paginate(20);
+
+      }
+      else{
+        $title = "data is coming from database";
+        $allbreed = Breed::paginate(20);
+        Cache::put('manal',$allbreed);
+      }
+  
+     return view('backend.breedlist',compact('allbreed','title'));
     }
     public function form()
     {
@@ -24,6 +37,7 @@ class BreedController
         'name'=>$request->breed_name,
         'cost'=>$request->cost,
       ]);
+      CreateBreedEvent::dispatch();
       return redirect()->back();
     }
     public function viewBreed($id)

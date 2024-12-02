@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\CreateCategoryEvent;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Validator;
 use Throwable;
 
@@ -11,10 +13,25 @@ class CategoryController
 {
     public function list()
     {
+
+
+       if(Cache::get('minu'))
+       {
+        $title = "Data from cache";
         $allCategory=Category::paginate(20);
+
+       }
+       else{
+        $title = "Data from database";
+        $allCategory=Category::paginate(20);
+       Cache::put('minu',$allCategory);   
+       }
+                        
+
+        // dd($allCategory);
        
-        return view('backend.categorylist',compact('allCategory'));   
-        
+       return view('backend.categorylist',compact('allCategory','title'));  
+       
     }
     public function form()
     {
@@ -39,8 +56,10 @@ class CategoryController
         'name'=>$request->cat_name,
         'description'=>$request->cat_description
     ]);
+    
+    CreateCategoryEvent::dispatch();
 
-    return redirect()->back();
+    return redirect()->route('category.list');
     }
     public function view($id)
     {
