@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Accessories;
 use App\Models\Category;
+use App\Repositories\AccessoriesStoreRepository;
+use App\Services\AccessoriesService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\UploadedFile;
@@ -61,12 +63,12 @@ class AccessoriesController
       
     $validation = Validator::make($request->all(),[ 
       'acc_title'=>'required|max:50',
-        'acc_description'=>'required|max:150',
-        'acc_price'=>'required|max:10',
-        'acc_stock'=>'required|max:10',
-        'acc_image'=>'required|file|max:1024',  
-        'category_id'=>'required',
-        'discount'=>'nullable|numeric',
+            'acc_description'=>'required|max:150',
+            'acc_price'=>'required|max:10',
+            'acc_stock'=>'required|max:10',
+            'acc_image'=>'required|file|max:1024',  
+            'category_id'=>'required',
+            'discount'=>'nullable|numeric',
        
       ]);
 
@@ -75,27 +77,11 @@ class AccessoriesController
         notify()->error($validation->getMessageBag());
         return redirect()->back();
       }
-      $fileName=null;
-      if($request->hasFile('acc_image'))
-      {
-           $file=$request->file('acc_image');
-
-           $fileName=date('Ymdhis').'.'.$file->getClientOriginalExtension();
-
-           $file->storeAs('/',$fileName);
-      }
+     $fileName=AccessoriesService::service($request->file('image'),'/');
+     AccessoriesStoreRepository::store($request,$fileName);
 
     //dd($request->all());
-    Accessories::create([
-        'name' => $request->acc_title,
-        'description' =>$request->acc_description,
-        'stock' =>$request->acc_stock,
-        'price' =>$request->acc_price,
-        'image' =>$fileName,
-        'category_id'=>$request->category_id,
-        'discount'=>$request->discount,
-        
-    ]);
+   
     
     return redirect()->route('accessories.list');
   }

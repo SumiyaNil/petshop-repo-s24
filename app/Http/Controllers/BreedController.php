@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Events\CreateBreedEvent;
 use App\Models\Breed;
+use App\Repositories\BreedStoreRepository;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
@@ -33,10 +35,7 @@ class BreedController
     public function store(Request $request)
     {
       
-      Breed::create([
-        'name'=>$request->breed_name,
-        'cost'=>$request->cost,
-      ]);
+     BreedStoreRepository::store($request);
       CreateBreedEvent::dispatch();
       return redirect()->back();
     }
